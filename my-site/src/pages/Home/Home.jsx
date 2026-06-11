@@ -8,13 +8,15 @@ export default function Home() {
   const games = [
     { key: '2048',   path: '/games/2048',   emoji: '🔢' },
     { key: 'snake',  path: '/games/snake',  emoji: '🐍' },
-    { key: 'wordle', path: '/games/wordle', emoji: '🟩' },
+    { key: 'wordle',   path: '/games/wordle',   emoji: '🟩' },
+    { key: 'reaction', path: '/games/reaction', emoji: '⚡' },
   ]
   const tools = [
     { key: 'notepad',    path: '/tools/notepad',    emoji: '📝' },
     { key: 'calendar',   path: '/tools/calendar',   emoji: '📅' },
     { key: 'calculator', path: '/tools/calculator', emoji: '🧮' },
     { key: 'spinner',    path: '/tools/spinner',    emoji: '🎡' },
+    { key: 'ambient',    path: '/tools/ambient',    emoji: '🎧' },
     { key: 'tba',        href: '/personalWeb/TBA/', emoji: '📋' },
   ]
 

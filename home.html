@@ -311,6 +311,12 @@
         <div class="play-card-title" id="card-title-wordle">Wordle</div>
         <div class="play-card-desc" id="card-desc-wordle">Guess the daily 5-letter word in 6 tries.</div>
       </a>
+      <a class="play-card" href="./my-site/#/games/reaction">
+        <div class="play-card-icon">⚡</div>
+        <div class="play-card-type" id="card-type-game4">Game</div>
+        <div class="play-card-title" id="card-title-reaction">Reaction Test</div>
+        <div class="play-card-desc" id="card-desc-reaction">Test your reflexes in milliseconds.</div>
+      </a>
       <a class="play-card" href="./my-site/#/tools/notepad">
         <div class="play-card-icon">📝</div>
         <div class="play-card-type" id="card-type-tool1">Tool</div>
@@ -335,9 +341,15 @@
         <div class="play-card-title" id="card-title-spin">Spinner</div>
         <div class="play-card-desc" id="card-desc-spin">Add options, spin the wheel — decide!</div>
       </a>
+      <a class="play-card" href="./my-site/#/tools/ambient">
+        <div class="play-card-icon">🎧</div>
+        <div class="play-card-type" id="card-type-tool5">Tool</div>
+        <div class="play-card-title" id="card-title-ambient">Ambient Mixer</div>
+        <div class="play-card-desc" id="card-desc-ambient">Mix background sounds for deep focus.</div>
+      </a>
       <a class="play-card" href="./TBA/">
         <div class="play-card-icon">📋</div>
-        <div class="play-card-type" id="card-type-tool5">Tool</div>
+        <div class="play-card-type" id="card-type-tool6">Tool</div>
         <div class="play-card-title" id="card-title-tba">TBA</div>
         <div class="play-card-desc" id="card-desc-tba">Task board with Eisenhower matrix prioritization.</div>
       </a>
@@ -381,6 +393,8 @@ const translations = {
     titleSnake: 'Snake',   descSnake: 'Classic snake — eat more, move faster.',
     title2048:  '2048',    desc2048:  'Merge tiles and chase the 2048 square.',
     titleWordle: 'Wordle', descWordle: 'Guess the daily 5-letter word in 6 tries.',
+    titleReaction: 'Reaction Test', descReaction: 'Test your reflexes in milliseconds.',
+    titleAmbient: 'Ambient Mixer',  descAmbient:  'Mix background sounds for deep focus.',
     titleNotepad: 'Notepad',    descNotepad: 'Quick notes, auto-saved locally.',
     titleCal:     'Calendar',   descCal:     'Browse months and jot down reminders.',
     titleCalc:    'Calculator', descCalc:    'A clean calculator for everyday math.',
@@ -418,6 +432,8 @@ const translations = {
     titleSnake: '贪吃蛇', descSnake: '经典贪吃蛇，吃得越多越难',
     title2048:  '2048',   desc2048:  '合并数字，挑战 2048！',
     titleWordle: 'Wordle', descWordle: '6 次机会猜出每日 5 字母单词。',
+    titleReaction: '反应力测试',   descReaction: '毫秒级别的反应力挑战。',
+    titleAmbient: '白噪音混音器', descAmbient:  '混合环境音，帮助专注。',
     titleNotepad: '记事本', descNotepad: '随手记，自动保存',
     titleCal:     '日历',   descCal:     '查看日期与备忘',
     titleCalc:    '计算器', descCalc:    '日常计算用',
@@ -473,18 +489,23 @@ function applyLang(lang) {
   document.getElementById('card-type-game1').textContent  = t.cardTypeGame
   document.getElementById('card-type-game2').textContent  = t.cardTypeGame
   document.getElementById('card-type-game3').textContent  = t.cardTypeGame
+  document.getElementById('card-type-game4').textContent  = t.cardTypeGame
+  document.getElementById('card-type-tool5').textContent  = t.cardTypeTool
+  document.getElementById('card-type-tool6').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool1').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool2').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool3').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool4').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool5').textContent  = t.cardTypeTool
-
   document.getElementById('card-title-2048').textContent  = t.title2048
   document.getElementById('card-desc-2048').textContent   = t.desc2048
   document.getElementById('card-title-snake').textContent  = t.titleSnake
   document.getElementById('card-desc-snake').textContent   = t.descSnake
-  document.getElementById('card-title-wordle').textContent = t.titleWordle
-  document.getElementById('card-desc-wordle').textContent  = t.descWordle
+  document.getElementById('card-title-wordle').textContent   = t.titleWordle
+  document.getElementById('card-desc-wordle').textContent    = t.descWordle
+  document.getElementById('card-title-reaction').textContent = t.titleReaction
+  document.getElementById('card-desc-reaction').textContent  = t.descReaction
+  document.getElementById('card-title-ambient').textContent  = t.titleAmbient
+  document.getElementById('card-desc-ambient').textContent   = t.descAmbient
   document.getElementById('card-title-notepad').textContent = t.titleNotepad
   document.getElementById('card-desc-notepad').textContent  = t.descNotepad
   document.getElementById('card-title-cal').textContent   = t.titleCal
