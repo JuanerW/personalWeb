@@ -4,36 +4,50 @@ export default function useSwipe(onSwipe, { minDistance = 30 } = {}) {
   const startRef = useRef(null)
 
   useEffect(() => {
-    function handleTouchStart(e) {
-      const touch = e.touches[0]
-      startRef.current = { x: touch.clientX, y: touch.clientY }
+    function getDir(dx, dy) {
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < minDistance) return null
+      return Math.abs(dx) > Math.abs(dy)
+        ? (dx > 0 ? 'right' : 'left')
+        : (dy > 0 ? 'down'  : 'up')
     }
 
-    function handleTouchEnd(e) {
+    // Touch
+    function onTouchStart(e) {
+      const t = e.touches[0]
+      startRef.current = { x: t.clientX, y: t.clientY }
+    }
+    function onTouchEnd(e) {
       if (!startRef.current) return
-      const touch = e.changedTouches[0]
-      const dx = touch.clientX - startRef.current.x
-      const dy = touch.clientY - startRef.current.y
+      const t   = e.changedTouches[0]
+      const dir = getDir(t.clientX - startRef.current.x, t.clientY - startRef.current.y)
       startRef.current = null
-
-      const absDx = Math.abs(dx)
-      const absDy = Math.abs(dy)
-
-      if (Math.max(absDx, absDy) < minDistance) return
-
-      if (absDx > absDy) {
-        onSwipe(dx > 0 ? 'right' : 'left')
-      } else {
-        onSwipe(dy > 0 ? 'down' : 'up')
-      }
+      if (dir) onSwipe(dir)
     }
 
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchend', handleTouchEnd, { passive: true })
+    // Mouse
+    function onMouseDown(e) {
+      startRef.current = { x: e.clientX, y: e.clientY }
+    }
+    function onMouseUp(e) {
+      if (!startRef.current) return
+      const dir = getDir(e.clientX - startRef.current.x, e.clientY - startRef.current.y)
+      startRef.current = null
+      if (dir) onSwipe(dir)
+    }
+    function onMouseLeave() { startRef.current = null }
+
+    window.addEventListener('touchstart',  onTouchStart, { passive: true })
+    window.addEventListener('touchend',    onTouchEnd,   { passive: true })
+    window.addEventListener('mousedown',   onMouseDown)
+    window.addEventListener('mouseup',     onMouseUp)
+    window.addEventListener('mouseleave',  onMouseLeave)
 
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('touchstart',  onTouchStart)
+      window.removeEventListener('touchend',    onTouchEnd)
+      window.removeEventListener('mousedown',   onMouseDown)
+      window.removeEventListener('mouseup',     onMouseUp)
+      window.removeEventListener('mouseleave',  onMouseLeave)
     }
   }, [onSwipe, minDistance])
 }
