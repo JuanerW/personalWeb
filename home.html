@@ -445,79 +445,65 @@ const translations = {
 
 function applyLang(lang) {
   const t = translations[lang]
+  const set  = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val }
+  const html = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML  = val }
+
   document.documentElement.lang = t.htmlLang
-  document.getElementById('lang-btn').textContent = t.btnLabel
+  set('lang-btn', t.btnLabel)
 
-  document.getElementById('eyebrow').textContent = t.eyebrow
-  document.getElementById('hero-h1').innerHTML = t.heroH1
-  document.getElementById('hero-lede').innerHTML = t.heroLede
+  set('eyebrow',   t.eyebrow)
+  html('hero-h1',  t.heroH1)
+  html('hero-lede', t.heroLede)
 
-  document.getElementById('nav-about').textContent    = t.navAbout
-  document.getElementById('nav-skills').textContent   = t.navSkills
-  document.getElementById('nav-projects').textContent = t.navProjects
-  document.getElementById('nav-contact').textContent  = t.navContact
-  document.getElementById('nav-play').textContent     = t.navPlay
+  set('nav-about',    t.navAbout)
+  set('nav-skills',   t.navSkills)
+  set('nav-projects', t.navProjects)
+  set('nav-contact',  t.navContact)
+  set('nav-play',     t.navPlay)
 
-  document.getElementById('sec-about').textContent    = t.secAbout
-  document.getElementById('about-p1').innerHTML       = t.aboutP1
-  document.getElementById('about-p2').textContent     = t.aboutP2
+  set('sec-about',  t.secAbout)
+  html('about-p1',  t.aboutP1)
+  set('about-p2',   t.aboutP2)
 
-  document.getElementById('sec-skills').textContent   = t.secSkills
-  document.getElementById('skill-lang').textContent   = t.skillLang
-  document.getElementById('skill-ml').textContent     = t.skillMl
-  document.getElementById('skill-math').textContent   = t.skillMath
-  document.getElementById('skill-eng').textContent    = t.skillEng
+  set('sec-skills',  t.secSkills)
+  set('skill-lang',  t.skillLang)
+  set('skill-ml',    t.skillMl)
+  set('skill-math',  t.skillMath)
+  set('skill-eng',   t.skillEng)
 
-  document.getElementById('sec-projects').textContent = t.secProjects
-  document.getElementById('p1-title').textContent     = t.p1Title
-  document.getElementById('p1-desc').textContent      = t.p1Desc
-  document.getElementById('p2-title').textContent     = t.p2Title
-  document.getElementById('p2-desc').textContent      = t.p2Desc
-  document.getElementById('p3-title').textContent     = t.p3Title
-  document.getElementById('p3-desc').textContent      = t.p3Desc
-  document.getElementById('p4-title').textContent     = t.p4Title
-  document.getElementById('p4-desc').textContent      = t.p4Desc
+  set('sec-projects', t.secProjects)
+  set('p1-title', t.p1Title)
+  set('p1-desc',  t.p1Desc)
+  set('p2-title', t.p2Title)
+  set('p2-desc',  t.p2Desc)
+  set('p3-title', t.p3Title)
+  set('p3-desc',  t.p3Desc)
+  set('p4-title', t.p4Title)
+  set('p4-desc',  t.p4Desc)
 
-  document.getElementById('sec-contact').textContent  = t.secContact
-  document.getElementById('contact-p').textContent    = t.contactP
-  document.getElementById('link-email').textContent   = t.linkEmail
-  document.getElementById('link-resume').textContent  = t.linkResume
+  set('sec-contact',  t.secContact)
+  set('contact-p',    t.contactP)
+  set('link-email',   t.linkEmail)
+  set('link-resume',  t.linkResume)
 
-  document.getElementById('sec-play').textContent     = t.secPlay
-  document.getElementById('play-intro').innerHTML     = t.playIntro
+  set('sec-play',      t.secPlay)
+  html('play-intro',   t.playIntro)
 
-  document.getElementById('card-type-game1').textContent  = t.cardTypeGame
-  document.getElementById('card-type-game2').textContent  = t.cardTypeGame
-  document.getElementById('card-type-game3').textContent  = t.cardTypeGame
-  document.getElementById('card-type-game4').textContent  = t.cardTypeGame
-  document.getElementById('card-type-tool5').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool6').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool1').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool2').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool3').textContent  = t.cardTypeTool
-  document.getElementById('card-type-tool4').textContent  = t.cardTypeTool
-  document.getElementById('card-title-2048').textContent  = t.title2048
-  document.getElementById('card-desc-2048').textContent   = t.desc2048
-  document.getElementById('card-title-snake').textContent  = t.titleSnake
-  document.getElementById('card-desc-snake').textContent   = t.descSnake
-  document.getElementById('card-title-wordle').textContent   = t.titleWordle
-  document.getElementById('card-desc-wordle').textContent    = t.descWordle
-  document.getElementById('card-title-reaction').textContent = t.titleReaction
-  document.getElementById('card-desc-reaction').textContent  = t.descReaction
-  document.getElementById('card-title-ambient').textContent  = t.titleAmbient
-  document.getElementById('card-desc-ambient').textContent   = t.descAmbient
-  document.getElementById('card-title-notepad').textContent = t.titleNotepad
-  document.getElementById('card-desc-notepad').textContent  = t.descNotepad
-  document.getElementById('card-title-cal').textContent   = t.titleCal
-  document.getElementById('card-desc-cal').textContent    = t.descCal
-  document.getElementById('card-title-calc').textContent  = t.titleCalc
-  document.getElementById('card-desc-calc').textContent   = t.descCalc
-  document.getElementById('card-title-spin').textContent  = t.titleSpin
-  document.getElementById('card-desc-spin').textContent   = t.descSpin
-  document.getElementById('card-title-tba').textContent   = t.titleTba
-  document.getElementById('card-desc-tba').textContent    = t.descTba
+  ;['game1','game2','game3','game4'].forEach(k => set('card-type-' + k, t.cardTypeGame))
+  ;['tool1','tool2','tool3','tool4','tool5','tool6'].forEach(k => set('card-type-' + k, t.cardTypeTool))
 
-  document.getElementById('footer-text').textContent = t.footer
+  set('card-title-2048',     t.title2048);     set('card-desc-2048',     t.desc2048)
+  set('card-title-snake',    t.titleSnake);    set('card-desc-snake',    t.descSnake)
+  set('card-title-wordle',   t.titleWordle);   set('card-desc-wordle',   t.descWordle)
+  set('card-title-reaction', t.titleReaction); set('card-desc-reaction', t.descReaction)
+  set('card-title-ambient',  t.titleAmbient);  set('card-desc-ambient',  t.descAmbient)
+  set('card-title-notepad',  t.titleNotepad);  set('card-desc-notepad',  t.descNotepad)
+  set('card-title-cal',      t.titleCal);      set('card-desc-cal',      t.descCal)
+  set('card-title-calc',     t.titleCalc);     set('card-desc-calc',     t.descCalc)
+  set('card-title-spin',     t.titleSpin);     set('card-desc-spin',     t.descSpin)
+  set('card-title-tba',      t.titleTba);      set('card-desc-tba',      t.descTba)
+
+  set('footer-text', t.footer)
 }
 
 function toggleLang() {
