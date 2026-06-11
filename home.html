@@ -323,6 +323,12 @@
         <div class="play-card-title" id="card-title-typing">Falling Words</div>
         <div class="play-card-desc" id="card-desc-typing">Type falling words before they hit the ground.</div>
       </a>
+      <a class="play-card" href="./my-site/#/games/hue">
+        <div class="play-card-icon">🎨</div>
+        <div class="play-card-type" id="card-type-game6">Game</div>
+        <div class="play-card-title" id="card-title-hue">Hue Sorter</div>
+        <div class="play-card-desc" id="card-desc-hue">Drag colour swatches into the perfect gradient.</div>
+      </a>
       <a class="play-card" href="./my-site/#/tools/notepad">
         <div class="play-card-icon">📝</div>
         <div class="play-card-type" id="card-type-tool1">Tool</div>
@@ -401,6 +407,7 @@ const translations = {
     titleWordle: 'Wordle', descWordle: 'Guess the daily 5-letter word in 6 tries.',
     titleReaction: 'Reaction Test', descReaction: 'Test your reflexes in milliseconds.',
     titleTyping: 'Falling Words',   descTyping:   'Type falling words before they hit the ground.',
+    titleHue: 'Hue Sorter',         descHue:      'Drag colour swatches into the perfect gradient.',
     titleAmbient: 'Ambient Mixer',  descAmbient:  'Mix background sounds for deep focus.',
     titleNotepad: 'Notepad',    descNotepad: 'Quick notes, auto-saved locally.',
     titleCal:     'Calendar',   descCal:     'Browse months and jot down reminders.',
@@ -441,6 +448,7 @@ const translations = {
     titleWordle: 'Wordle', descWordle: '6 次机会猜出每日 5 字母单词。',
     titleReaction: '反应力测试',   descReaction: '毫秒级别的反应力挑战。',
     titleTyping: '打字防御战',     descTyping:   '在单词落地前打出来，速度越来越快。',
+    titleHue: '色感排序',           descHue:      '拖动色块，拼出完美的颜色渐变。',
     titleAmbient: '白噪音混音器', descAmbient:  '混合环境音，帮助专注。',
     titleNotepad: '记事本', descNotepad: '随手记，自动保存',
     titleCal:     '日历',   descCal:     '查看日期与备忘',
@@ -497,7 +505,7 @@ function applyLang(lang) {
   set('sec-play',      t.secPlay)
   html('play-intro',   t.playIntro)
 
-  ;['game1','game2','game3','game4','game5'].forEach(k => set('card-type-' + k, t.cardTypeGame))
+  ;['game1','game2','game3','game4','game5','game6'].forEach(k => set('card-type-' + k, t.cardTypeGame))
   ;['tool1','tool2','tool3','tool4','tool5','tool6'].forEach(k => set('card-type-' + k, t.cardTypeTool))
 
   set('card-title-2048',     t.title2048);     set('card-desc-2048',     t.desc2048)
@@ -505,6 +513,7 @@ function applyLang(lang) {
   set('card-title-wordle',   t.titleWordle);   set('card-desc-wordle',   t.descWordle)
   set('card-title-reaction', t.titleReaction); set('card-desc-reaction', t.descReaction)
   set('card-title-typing',   t.titleTyping);   set('card-desc-typing',   t.descTyping)
+  set('card-title-hue',      t.titleHue);      set('card-desc-hue',      t.descHue)
   set('card-title-ambient',  t.titleAmbient);  set('card-desc-ambient',  t.descAmbient)
   set('card-title-notepad',  t.titleNotepad);  set('card-desc-notepad',  t.descNotepad)
   set('card-title-cal',      t.titleCal);      set('card-desc-cal',      t.descCal)

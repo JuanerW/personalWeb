@@ -11,6 +11,7 @@ export default function Home() {
     { key: 'wordle',   path: '/games/wordle',   emoji: '🟩' },
     { key: 'reaction', path: '/games/reaction', emoji: '⚡' },
     { key: 'typing',   path: '/games/typing',   emoji: '⌨️' },
+    { key: 'hue',      path: '/games/hue',      emoji: '🎨' },
   ]
   const tools = [
     { key: 'notepad',    path: '/tools/notepad',    emoji: '📝' },
