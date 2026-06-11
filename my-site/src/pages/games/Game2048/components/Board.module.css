@@ -1,0 +1,16 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 72px);
+  gap: 10px;
+  padding: 12px;
+  background: var(--color-amber-50);
+  border-radius: 16px;
+  position: relative;
+}
+
+@media (max-width: 420px) {
+  .board {
+    grid-template-columns: repeat(4, 60px);
+    gap: 8px;
+  }
+}

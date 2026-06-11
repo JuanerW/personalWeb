@@ -1,0 +1,112 @@
+.page {
+  min-height: calc(100vh - 56px);
+  padding: 24px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.back {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.back:hover {
+  color: var(--color-amber-400);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.resetBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-amber-400);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.resetBtn:hover {
+  background: var(--color-amber-600);
+}
+
+.scoreRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.boardWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  z-index: 10;
+}
+
+.overlayContent {
+  text-align: center;
+}
+
+.overlayText {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.overlayBtns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-amber-400);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-amber-600);
+}
+
+.hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 16px;
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 16px;
+  }
+}

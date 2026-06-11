@@ -1,0 +1,81 @@
+:root {
+  /* 主色调：暖橙 */
+  --color-amber-50:  #FAEEDA;
+  --color-amber-100: #FAC775;
+  --color-amber-400: #EF9F27;
+  --color-amber-600: #BA7517;
+  --color-amber-800: #633806;
+
+  /* 辅助色：珊瑚粉 */
+  --color-coral-50:  #FAECE7;
+  --color-coral-100: #F5C4B3;
+  --color-coral-400: #D85A30;
+  --color-coral-600: #993C1D;
+
+  /* 辅助色：粉紫 */
+  --color-pink-50:   #FBEAF0;
+  --color-pink-100:  #F4C0D1;
+  --color-pink-400:  #D4537E;
+  --color-pink-600:  #993556;
+
+  /* 辅助色：紫 */
+  --color-purple-50:  #EEEDFE;
+  --color-purple-400: #7F77DD;
+  --color-purple-600: #534AB7;
+  --color-purple-800: #3C3489;
+
+  /* 中性色 */
+  --color-gray-50:   #F1EFE8;
+  --color-gray-200:  #B4B2A9;
+  --color-gray-600:  #5F5E5A;
+  --color-gray-800:  #444441;
+
+  /* 语义色 */
+  --color-bg-page:        #FFF8F0;
+  --color-bg-surface:     #FFFFFF;
+  --color-text-primary:   #3D2B1F;
+  --color-text-secondary: #7A6355;
+  --color-border:         rgba(100, 60, 20, 0.12);
+
+  /* 阴影 */
+  --shadow-card: 0 4px 16px rgba(100, 60, 20, 0.10);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  background: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 动效规范 */
+@keyframes tile-appear {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes tile-merge {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* 通用交互过渡 */
+* {
+  transition: all 150ms ease;
+}

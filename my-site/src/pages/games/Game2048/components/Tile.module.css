@@ -1,0 +1,25 @@
+.tile {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.appear {
+  animation: tile-appear 150ms ease;
+}
+
+.merge {
+  animation: tile-merge 200ms ease;
+}
+
+@media (max-width: 420px) {
+  .tile {
+    width: 60px;
+    height: 60px;
+  }
+}

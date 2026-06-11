@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhiyuan Wang — ML & Optimization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --bg-card: #fbf9f4;
+    --ink: #20211c;
+    --ink-soft: #54564d;
+    --ink-faint: #8a8b80;
+    --accent: #1d6b5f;
+    --accent-deep: #134a41;
+    --line: #ddd8cb;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Newsreader', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(var(--line) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Top Nav ---------- */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(244, 241, 234, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 13px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  header {
+    padding: 100px 0 70px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: rise 0.7s ease forwards;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(46px, 8vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise 0.7s ease 0.1s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: 21px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    opacity: 0;
+    animation: rise 0.7s ease 0.22s forwards;
+  }
+
+  .lede a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sec-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .prose p { margin-bottom: 18px; color: var(--ink-soft); }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- Research tags ---------- */
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 6px 13px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--accent-deep);
+    background: var(--bg-card);
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 14px;
+  }
+  .skill-group {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .skill-list {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 2;
+  }
+
+  /* ---------- Projects ---------- */
+  .project {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 26px 28px;
+    margin-bottom: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+  .project:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 14px 30px -18px rgba(29,107,95,0.5);
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .project h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: -0.01em;
+  }
+  .project .year {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .project p { color: var(--ink-soft); font-size: 18px; }
+  .project .stack {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--accent);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+  .project .arrow {
+    position: absolute;
+    top: 26px; right: 28px;
+    font-family: var(--mono);
+    color: var(--ink-faint);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .project:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+  /* ---------- Contact ---------- */
+  .links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 8px; }
+  .links a {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+  }
+  .links a:hover { color: var(--accent); }
+
+  /* ---------- Play Zone ---------- */
+  .play-intro {
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .play-intro a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  .play-intro a:hover { color: var(--accent); }
+
+  .play-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .play-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .play-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 14px 30px -18px rgba(29,107,95,0.4);
+  }
+  .play-card-icon { font-size: 28px; line-height: 1; margin-bottom: 10px; }
+  .play-card-type {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .play-card-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .play-card-desc {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  footer {
+    padding: 40px 0 60px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 540px) {
+    body { font-size: 17px; }
+    header { padding: 70px 0 50px; }
+    .project .arrow { display: none; }
+    .project-top { flex-direction: column; gap: 4px; }
+    .nav-links { display: none; }
+    .play-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">ZW</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#playground">Play</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Researcher · ML & Combinatorial Optimization</div>
+    <h1>Hi, I'm Zhiyuan Wang. I study how machines <em>learn to optimize.</em></h1>
+    <p class="lede">My work sits at the intersection of reinforcement learning and combinatorial optimization — teaching neural policies to solve hard problems like Max-Cut, and learning to optimize signals in wireless systems. Currently focused on the <a href="#projects">L2A framework</a> for graph problems.</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">About</div>
+    <div class="prose">
+      <p>I'm a researcher working on <strong>learning-based methods for optimization</strong>. Most of my time goes into designing neural network policies that learn to navigate large combinatorial search spaces — combining policy-gradient training with classical local search.</p>
+      <p>Outside the lab, I read a fair amount of science fiction and literary fiction, and I have a long-standing interest in theology and history. I think the best research, like the best stories, comes from sitting with a hard problem long enough to see it differently.</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Reinforcement Learning</span>
+      <span class="tag">Combinatorial Optimization</span>
+      <span class="tag">Graph Neural Networks</span>
+      <span class="tag">PyTorch</span>
+      <span class="tag">ML Systems</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">Python<br>C++<br>SQL<br>JavaScript<br>HTML / CSS</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML & RL</div>
+        <div class="skill-list">PyTorch<br>Reinforcement Learning<br>Graph Neural Nets<br>Transformers<br>Policy Gradient</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Mathematics</div>
+        <div class="skill-list">Combinatorial Opt.<br>Linear Programming<br>Graph Theory<br>Probability<br>Stochastic Proc.</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Engineering</div>
+        <div class="skill-list">Git & GitHub<br>Linux<br>LaTeX<br>React / Vite<br>Data Analysis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-label">Selected Work</div>
+
+    <a class="project" href="#">
+      <span class="arrow">↗</span>
+      <div class="project-top">
+        <h3>L2A — Learning to Anneal</h3>
+        <span class="year">2025–26</span>
+      </div>
+      <p>A reinforcement learning framework for graph combinatorial optimization, applied to Max-Cut on Barabási–Albert graphs. Couples a Transformer-based policy with local search and curriculum learning to progressively reshape the search operator.</p>
+      <div class="stack">PyTorch · Policy Gradient · Graph Transformer · Curriculum Learning</div>
+    </a>
+
+    <a class="project" href="#">
+      <span class="arrow">↗</span>
+      <div class="project-top">
+        <h3>Learning to Optimize Beamforming</h3>
+        <span class="year">2025</span>
+      </div>
+      <p>A dual-stream Transformer (L2OTransformer) for multi-user MIMO beamforming, with user-level and antenna-level attention. Explored zero-shot generalization across varying numbers of users via masking, refined with projected gradient descent.</p>
+      <div class="stack">PyTorch · Transformers · MIMO · PGD Refinement</div>
+    </a>
+
+    <a class="project" href="#">
+      <span class="arrow">↗</span>
+      <div class="project-top">
+        <h3>Airline Overbooking Simulator</h3>
+        <span class="year">2025</span>
+      </div>
+      <p>An open-source simulation comparing airline bumping policies, built during RCOS. Python simulation core with an HTML interface and SQL-backed data layer for analyzing overbooking strategies.</p>
+      <div class="stack">Python · Simulation · SQL · HTML</div>
+    </a>
+
+    <a class="project" href="#">
+      <span class="arrow">↗</span>
+      <div class="project-top">
+        <h3>Deep RL Coursework</h3>
+        <span class="year">2024–25</span>
+      </div>
+      <p>A series of RL implementations: Double DQN for CartPole and Pong, Q-learning with state discretization for Mountain Car and Pendulum, and dynamic programming for MDP environments.</p>
+      <div class="stack">PyTorch · DQN · Q-Learning · Dynamic Programming</div>
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-label">Get in Touch</div>
+    <div class="prose">
+      <p>Happy to talk about reinforcement learning, optimization, or anything at the intersection of the two. Reach me here:</p>
+    </div>
+    <div class="links">
+      <a href="mailto:wangzhiyuanstan@outlook.com">Email</a>
+      <a href="https://github.com/JuanerW">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=otnkvlMAAAAJ&hl=en">Google Scholar</a>
+      <a href="./resume.pdf">Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section id="playground">
+  <div class="wrap">
+    <div class="sec-label">Play Zone</div>
+    <p class="play-intro">A small corner of the internet I built for fun — games and everyday tools. <a href="./my-site/">Open the full app ↗</a></p>
+    <div class="play-grid">
+      <a class="play-card" href="./my-site/#/games/2048">
+        <div class="play-card-icon">🔢</div>
+        <div class="play-card-type">Game</div>
+        <div class="play-card-title">2048</div>
+        <div class="play-card-desc">Merge tiles and chase the 2048 square.</div>
+      </a>
+      <a class="play-card" href="./my-site/#/games/snake">
+        <div class="play-card-icon">🐍</div>
+        <div class="play-card-type">Game</div>
+        <div class="play-card-title">贪吃蛇</div>
+        <div class="play-card-desc">Classic snake — eat more, move faster.</div>
+      </a>
+      <a class="play-card" href="./my-site/#/tools/notepad">
+        <div class="play-card-icon">📝</div>
+        <div class="play-card-type">Tool</div>
+        <div class="play-card-title">记事本</div>
+        <div class="play-card-desc">Quick notes, auto-saved locally.</div>
+      </a>
+      <a class="play-card" href="./my-site/#/tools/calendar">
+        <div class="play-card-icon">📅</div>
+        <div class="play-card-type">Tool</div>
+        <div class="play-card-title">日历</div>
+        <div class="play-card-desc">Browse months and jot down reminders.</div>
+      </a>
+      <a class="play-card" href="./my-site/#/tools/calculator">
+        <div class="play-card-icon">🧮</div>
+        <div class="play-card-type">Tool</div>
+        <div class="play-card-title">计算器</div>
+        <div class="play-card-desc">A clean calculator for everyday math.</div>
+      </a>
+      <a class="play-card" href="./my-site/#/tools/spinner">
+        <div class="play-card-icon">🎡</div>
+        <div class="play-card-type">Tool</div>
+        <div class="play-card-title">转盘抽奖</div>
+        <div class="play-card-desc">Add options, spin the wheel — decide!</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Zhiyuan Wang · Built with plain HTML, hosted on GitHub Pages</div>
+</footer>
+
+</body>
+</html>

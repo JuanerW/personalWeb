@@ -1,0 +1,107 @@
+.page {
+  min-height: calc(100vh - 56px);
+  padding: 24px;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.back {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.back:hover {
+  color: var(--color-amber-400);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.calculator {
+  background: var(--color-bg-surface);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.display {
+  background: var(--color-gray-50);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-align: right;
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.key {
+  height: 56px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 150ms;
+}
+
+.key:hover {
+  opacity: 0.8;
+}
+
+.num {
+  background: var(--color-gray-50);
+  color: var(--color-text-primary);
+}
+
+.op {
+  background: var(--color-amber-400);
+  color: white;
+}
+
+.func {
+  background: var(--color-coral-50);
+  color: var(--color-coral-600);
+}
+
+.eq {
+  background: var(--color-amber-600);
+  color: white;
+}
+
+.zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 16px;
+  }
+  .key {
+    height: 48px;
+    font-size: 18px;
+  }
+}
