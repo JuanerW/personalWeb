@@ -4,6 +4,7 @@
   grid-template-rows: repeat(20, 20px);
   background: var(--color-gray-50);
   border-radius: 12px;
+  border: 2px solid var(--line);
   overflow: hidden;
   width: 400px;
   height: 400px;

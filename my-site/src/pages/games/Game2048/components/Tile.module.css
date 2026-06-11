@@ -1,25 +1,61 @@
 .tile {
-  width: 72px;
-  height: 72px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  font-family: var(--mono);
   font-weight: 700;
   user-select: none;
+  will-change: transform;
+  z-index: 1;
+  transform: translate(
+    calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+    calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+  );
+  transition: transform 100ms ease;
 }
 
 .appear {
-  animation: tile-appear 150ms ease;
+  animation: tile-appear 150ms ease both;
 }
 
 .merge {
-  animation: tile-merge 200ms ease;
+  animation: tile-merge 200ms ease 100ms both;
 }
 
-@media (max-width: 420px) {
-  .tile {
-    width: 60px;
-    height: 60px;
+@keyframes tile-appear {
+  from {
+    transform: translate(
+      calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+      calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+    ) scale(0);
+    opacity: 0;
   }
+  to {
+    transform: translate(
+      calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+      calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+    ) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tile-merge {
+  0%   { transform: translate(
+           calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+           calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+         ) scale(1); }
+  50%  { transform: translate(
+           calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+           calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+         ) scale(1.12); }
+  100% { transform: translate(
+           calc(var(--pad) + var(--c) * (var(--cell) + var(--gap))),
+           calc(var(--pad) + var(--r) * (var(--cell) + var(--gap)))
+         ) scale(1); }
 }

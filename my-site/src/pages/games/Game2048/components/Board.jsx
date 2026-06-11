@@ -1,19 +1,15 @@
 import Tile from './Tile'
 import styles from './Board.module.css'
 
-export default function Board({ board, lastMove }) {
+const BG_CELLS = Array.from({ length: 16 }, (_, i) => i)
+
+export default function Board({ tiles }) {
   return (
     <div className={styles.board}>
-      {board.map((row, r) =>
-        row.map((val, c) => {
-          const key = `${r}-${c}`
-          const isNew = lastMove && lastMove.board[r][c] === 0 && val !== 0
-          const isMerged = lastMove && lastMove.board[r][c] !== 0 && val !== 0 && lastMove.board[r][c] !== val
-          return (
-            <Tile key={`${key}-${val}`} value={val} isNew={isNew} isMerged={isMerged} />
-          )
-        })
-      )}
+      {BG_CELLS.map(i => <div key={i} className={styles.cell} />)}
+      {tiles.map(tile => (
+        <Tile key={tile.id} {...tile} />
+      ))}
     </div>
   )
 }

@@ -1,165 +1,144 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 
-function getEmptyBoard() {
-  return Array.from({ length: 4 }, () => Array(4).fill(0))
+let _nextId = 0
+const uid = () => ++_nextId
+
+function randomFreeCell(tiles) {
+  const occupied = new Set(tiles.map(t => `${t.row},${t.col}`))
+  const free = []
+  for (let r = 0; r < 4; r++)
+    for (let c = 0; c < 4; c++)
+      if (!occupied.has(`${r},${c}`)) free.push([r, c])
+  if (!free.length) return null
+  return free[Math.floor(Math.random() * free.length)]
 }
 
-function getRandomEmptyCell(board) {
-  const empty = []
-  for (let r = 0; r < 4; r++) {
-    for (let c = 0; c < 4; c++) {
-      if (board[r][c] === 0) empty.push([r, c])
-    }
+function spawnRandom(tiles) {
+  const cell = randomFreeCell(tiles)
+  if (!cell) return tiles
+  const [row, col] = cell
+  return [...tiles, { id: uid(), value: Math.random() < 0.9 ? 2 : 4, row, col, isNew: true, isMerged: false }]
+}
+
+function initTiles() {
+  return spawnRandom(spawnRandom([]))
+}
+
+// Coordinate transforms so all directions reduce to "slide left"
+function toLocal(row, col, dir) {
+  switch (dir) {
+    case 'left':  return [row, col]
+    case 'right': return [row, 3 - col]
+    case 'up':    return [col, row]
+    case 'down':  return [col, 3 - row]
+    default:      return [row, col]
   }
-  if (empty.length === 0) return null
-  return empty[Math.floor(Math.random() * empty.length)]
 }
-
-function addRandomTile(board) {
-  const cell = getRandomEmptyCell(board)
-  if (!cell) return board
-  const [r, c] = cell
-  const newBoard = board.map(row => [...row])
-  newBoard[r][c] = Math.random() < 0.9 ? 2 : 4
-  return newBoard
-}
-
-function initBoard() {
-  let board = getEmptyBoard()
-  board = addRandomTile(board)
-  board = addRandomTile(board)
-  return board
-}
-
-function mergeLeft(row) {
-  let filtered = row.filter(v => v !== 0)
-  let score = 0
-  const merged = []
-  let i = 0
-  while (i < filtered.length) {
-    if (i + 1 < filtered.length && filtered[i] === filtered[i + 1]) {
-      merged.push(filtered[i] * 2)
-      score += filtered[i] * 2
-      i += 2
-    } else {
-      merged.push(filtered[i])
-      i += 1
-    }
+function fromLocal(lr, lc, dir) {
+  switch (dir) {
+    case 'left':  return [lr, lc]
+    case 'right': return [lr, 3 - lc]
+    case 'up':    return [lc, lr]
+    case 'down':  return [3 - lc, lr]
+    default:      return [lr, lc]
   }
-  while (merged.length < 4) merged.push(0)
-  return { row: merged, score }
 }
 
-function moveLeft(board) {
-  let totalScore = 0
-  const newBoard = board.map(row => {
-    const { row: newRow, score } = mergeLeft(row)
-    totalScore += score
-    return newRow
+function applyMove(tiles, dir) {
+  const local = tiles.map(t => {
+    const [lr, lc] = toLocal(t.row, t.col, dir)
+    return { ...t, lr, lc }
   })
-  return { newBoard, totalScore }
-}
 
-function moveRight(board) {
-  const flipped = board.map(row => [...row].reverse())
-  const { newBoard, totalScore } = moveLeft(flipped)
-  return { newBoard: newBoard.map(row => row.reverse()), totalScore }
-}
+  const rows = [[], [], [], []]
+  local.forEach(t => rows[t.lr].push(t))
+  rows.forEach(r => r.sort((a, b) => a.lc - b.lc))
 
-function moveUp(board) {
-  const transposed = board[0].map((_, col) => board.map(row => row[col]))
-  const { newBoard, totalScore } = moveLeft(transposed)
-  const result = newBoard[0].map((_, col) => newBoard.map(row => row[col]))
-  return { newBoard: result, totalScore }
-}
+  const result = []
+  let addedScore = 0
+  let moved = false
 
-function moveDown(board) {
-  const transposed = board[0].map((_, col) => board.map(row => row[col]))
-  const { newBoard, totalScore } = moveRight(transposed)
-  const result = newBoard[0].map((_, col) => newBoard.map(row => row[col]))
-  return { newBoard: result, totalScore }
-}
-
-const moveFunctions = { left: moveLeft, right: moveRight, up: moveUp, down: moveDown }
-
-function boardsEqual(a, b) {
-  for (let r = 0; r < 4; r++) {
-    for (let c = 0; c < 4; c++) {
-      if (a[r][c] !== b[r][c]) return false
+  rows.forEach((rowTiles, lr) => {
+    let destCol = 0
+    let i = 0
+    while (i < rowTiles.length) {
+      const a = rowTiles[i]
+      if (i + 1 < rowTiles.length && rowTiles[i + 1].value === a.value) {
+        result.push({ id: a.id, value: a.value * 2, lr, lc: destCol, isNew: false, isMerged: true })
+        addedScore += a.value * 2
+        moved = true  // merging always means movement
+        i += 2
+      } else {
+        result.push({ id: a.id, value: a.value, lr, lc: destCol, isNew: false, isMerged: false })
+        if (a.lr !== lr || a.lc !== destCol) moved = true
+        i++
+      }
+      destCol++
     }
-  }
-  return true
+  })
+
+  if (!moved) return { newTiles: tiles, addedScore: 0, moved: false }
+
+  const worldTiles = result.map(t => {
+    const [row, col] = fromLocal(t.lr, t.lc, dir)
+    return { id: t.id, value: t.value, row, col, isNew: false, isMerged: t.isMerged }
+  })
+
+  return { newTiles: worldTiles, addedScore, moved: true }
 }
 
-function isWon(board) {
-  for (let r = 0; r < 4; r++) {
-    for (let c = 0; c < 4; c++) {
-      if (board[r][c] >= 2048) return true
-    }
+function hasMove(tiles) {
+  for (const dir of ['left', 'right', 'up', 'down']) {
+    const { moved } = applyMove(tiles, dir)
+    if (moved) return true
   }
   return false
 }
 
-function isGameOver(board) {
-  for (const dir of ['left', 'right', 'up', 'down']) {
-    const { newBoard } = moveFunctions[dir](board)
-    if (!boardsEqual(board, newBoard)) return false
-  }
-  return true
-}
-
 export default function use2048() {
-  const savedBest = parseInt(localStorage.getItem('2048-best'), 10) || 0
-  const [board, setBoard] = useState(initBoard)
+  const [tiles, setTiles] = useState(initTiles)
   const [score, setScore] = useState(0)
-  const [bestScore, setBestScore] = useState(savedBest)
+  const [bestScore, setBestScore] = useState(() => parseInt(localStorage.getItem('2048-best'), 10) || 0)
   const [status, setStatus] = useState('playing')
-  const [lastMove, setLastMove] = useState(null) // { board, direction }
 
-  const updateBest = useCallback((newScore) => {
-    if (newScore > savedBest) {
-      setBestScore(newScore)
-      localStorage.setItem('2048-best', String(newScore))
-    }
-  }, [savedBest])
-
-  const move = useCallback((direction) => {
+  const move = useCallback((dir) => {
     if (status !== 'playing') return
-    setBoard(prev => {
-      const fn = moveFunctions[direction]
-      if (!fn) return prev
-      const { newBoard, totalScore } = fn(prev)
-      if (boardsEqual(prev, newBoard)) return prev
+    setTiles(prev => {
+      const { newTiles, addedScore, moved } = applyMove(prev, dir)
+      if (!moved) return prev
 
-      setLastMove({ board: prev, direction })
-      setScore(s => {
-        const newScore = s + totalScore
-        updateBest(newScore)
-        return newScore
-      })
+      const withSpawn = spawnRandom(newTiles)
 
-      let nextBoard = addRandomTile(newBoard)
-
-      if (isWon(nextBoard)) {
-        setStatus('won')
-      } else if (isGameOver(nextBoard)) {
-        setStatus('lost')
+      if (addedScore > 0) {
+        setScore(s => {
+          const ns = s + addedScore
+          setBestScore(prevBest => {
+            if (ns > prevBest) {
+              localStorage.setItem('2048-best', String(ns))
+              return ns
+            }
+            return prevBest
+          })
+          return ns
+        })
       }
 
-      return nextBoard
+      const won  = withSpawn.some(t => t.value >= 2048)
+      const over = !won && !hasMove(withSpawn)
+      if (won)  setStatus('won')
+      if (over) setStatus('lost')
+
+      return withSpawn
     })
-  }, [status, updateBest])
+  }, [status])
 
   const reset = useCallback(() => {
-    setBoard(initBoard())
+    setTiles(initTiles())
     setScore(0)
     setStatus('playing')
-    setLastMove(null)
   }, [])
 
-  const continueGame = useCallback(() => {
-    setStatus('playing')
-  }, [])
+  const continueGame = useCallback(() => setStatus('playing'), [])
 
-  return { board, score, bestScore, status, move, reset, continueGame, lastMove }
+  return { tiles, score, bestScore, status, move, reset, continueGame }
 }

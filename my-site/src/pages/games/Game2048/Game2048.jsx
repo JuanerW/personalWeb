@@ -9,7 +9,7 @@ import styles from './Game2048.module.css'
 
 export default function Game2048() {
   const { T } = useLang()
-  const { board, score, bestScore, status, move, reset, continueGame, lastMove } = use2048()
+  const { tiles, score, bestScore, status, move, reset, continueGame } = use2048()
 
   const handleKeyDown = useCallback((e) => {
     const keyMap = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' }
@@ -38,7 +38,7 @@ export default function Game2048() {
         </div>
 
         <div className={styles.boardWrapper}>
-          <Board board={board} lastMove={lastMove} />
+          <Board tiles={tiles} />
           {status !== 'playing' && (
             <div className={styles.overlay}>
               {status === 'won' && (

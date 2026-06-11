@@ -64,9 +64,10 @@ export default function useSnake() {
         default: return prev
       }
 
-      // Check wall collision
-      if (newHead.x < 0 || newHead.x >= GRID_SIZE || newHead.y < 0 || newHead.y >= GRID_SIZE) {
-        return { ...prev, status: 'lost' }
+      // Wrap around edges instead of dying
+      newHead = {
+        x: ((newHead.x % GRID_SIZE) + GRID_SIZE) % GRID_SIZE,
+        y: ((newHead.y % GRID_SIZE) + GRID_SIZE) % GRID_SIZE,
       }
 
       // Check self collision
