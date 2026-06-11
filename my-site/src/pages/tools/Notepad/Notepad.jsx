@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useLang } from '../../../LangContext'
 import styles from './Notepad.module.css'
 
 const STORAGE_KEY = 'notepad-content'
 
 export default function Notepad() {
+  const { T } = useLang()
   const [content, setContent] = useState('')
   const [confirmClear, setConfirmClear] = useState(false)
 
@@ -20,35 +22,28 @@ export default function Notepad() {
   }
 
   function handleClear() {
-    if (!confirmClear) {
-      setConfirmClear(true)
-      return
-    }
+    if (!confirmClear) { setConfirmClear(true); return }
     setContent('')
     localStorage.removeItem(STORAGE_KEY)
     setConfirmClear(false)
   }
 
-  const wordCount = content.length
-
   return (
     <div className={styles.page}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Link to="/" className={styles.back}>&larr; 返回</Link>
-          <h1 className={styles.title}>记事本</h1>
+          <Link to="/" className={styles.back}>{T.back}</Link>
+          <h1 className={styles.title}>{T.notepadTitle}</h1>
           <button className={styles.clearBtn} onClick={handleClear}>
-            {confirmClear ? '确认清空？' : '清空'}
+            {confirmClear ? T.notepadConfirmClear : T.notepadClear}
           </button>
         </div>
-        <div className={styles.status}>
-          已自动保存 · 共 {wordCount} 字
-        </div>
+        <div className={styles.status}>{T.notepadStatus(content.length)}</div>
         <textarea
           className={styles.textarea}
           value={content}
           onChange={handleChange}
-          placeholder="开始输入..."
+          placeholder={T.notepadPlaceholder}
         />
       </div>
     </div>

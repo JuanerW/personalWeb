@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +23,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--ink);
@@ -36,311 +34,123 @@
     background-image: radial-gradient(var(--line) 0.5px, transparent 0.5px);
     background-size: 24px 24px;
   }
-
   ::selection { background: var(--accent); color: #fff; }
 
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
 
   /* ---------- Top Nav ---------- */
   .top-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: rgba(244, 241, 234, 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
   .nav-inner {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 13px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    max-width: 760px; margin: 0 auto; padding: 13px 28px;
+    display: flex; justify-content: space-between; align-items: center;
   }
-  .nav-brand {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-  }
-  .nav-links {
-    display: flex;
-    gap: 22px;
-    list-style: none;
-  }
+  .nav-brand { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.06em; }
+  .nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
   .nav-links a {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
 
+  /* ---------- Language toggle ---------- */
+  .lang-btn {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); background: none; border: 1px solid var(--line);
+    border-radius: 100px; padding: 4px 11px; cursor: pointer; transition: color 0.2s, border-color 0.2s;
+  }
+  .lang-btn:hover { color: var(--accent); border-color: var(--accent); }
+
   /* ---------- Hero ---------- */
-  header {
-    padding: 100px 0 70px;
-    border-bottom: 1px solid var(--line);
-  }
-
+  header { padding: 100px 0 70px; border-bottom: 1px solid var(--line); }
   .eyebrow {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 22px;
-    opacity: 0;
-    animation: rise 0.7s ease forwards;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 22px; opacity: 0; animation: rise 0.7s ease forwards;
   }
-
   h1 {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: clamp(46px, 8vw, 78px);
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: rise 0.7s ease 0.1s forwards;
+    font-family: var(--display); font-weight: 500; font-size: clamp(46px, 8vw, 78px);
+    line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 28px;
+    opacity: 0; animation: rise 0.7s ease 0.1s forwards;
   }
-
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
+  h1 em { font-style: italic; color: var(--accent); }
   .lede {
-    font-size: 21px;
-    color: var(--ink-soft);
-    max-width: 56ch;
-    opacity: 0;
-    animation: rise 0.7s ease 0.22s forwards;
+    font-size: 21px; color: var(--ink-soft); max-width: 56ch;
+    opacity: 0; animation: rise 0.7s ease 0.22s forwards;
   }
+  .lede a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 
-  .lede a {
-    color: var(--ink);
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1.5px;
-  }
-
-  /* ---------- Section scaffolding ---------- */
+  /* ---------- Sections ---------- */
   section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-
   .sec-label {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 32px; display: flex; align-items: center; gap: 14px;
   }
-  .sec-label::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-  }
-
+  .sec-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
   .prose p { margin-bottom: 18px; color: var(--ink-soft); }
   .prose p:last-child { margin-bottom: 0; }
   .prose strong { color: var(--ink); font-weight: 500; }
 
-  /* ---------- Research tags ---------- */
+  /* ---------- Tags ---------- */
   .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
-  .tag {
-    font-family: var(--mono);
-    font-size: 13px;
-    padding: 6px 13px;
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    color: var(--accent-deep);
-    background: var(--bg-card);
-  }
+  .tag { font-family: var(--mono); font-size: 13px; padding: 6px 13px; border: 1px solid var(--line); border-radius: 100px; color: var(--accent-deep); background: var(--bg-card); }
 
   /* ---------- Skills ---------- */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
-    gap: 14px;
-  }
-  .skill-group {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 18px 20px;
-  }
-  .skill-group-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  .skill-list {
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 2;
-  }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 14px; }
+  .skill-group { background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px; padding: 18px 20px; }
+  .skill-group-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .skill-list { font-size: 15px; color: var(--ink-soft); line-height: 2; }
 
   /* ---------- Projects ---------- */
   .project {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 26px 28px;
-    margin-bottom: 16px;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    display: block; text-decoration: none; color: inherit; padding: 26px 28px; margin-bottom: 16px;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px; position: relative;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    position: relative;
   }
-  .project:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 14px 30px -18px rgba(29,107,95,0.5);
-  }
-
-  .project-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 10px;
-  }
-  .project h3 {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 25px;
-    letter-spacing: -0.01em;
-  }
-  .project .year {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--ink-faint);
-    white-space: nowrap;
-  }
+  .project:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 30px -18px rgba(29,107,95,0.5); }
+  .project-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+  .project h3 { font-family: var(--display); font-weight: 500; font-size: 25px; letter-spacing: -0.01em; }
+  .project .year { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); white-space: nowrap; }
   .project p { color: var(--ink-soft); font-size: 18px; }
-  .project .stack {
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--accent);
-    margin-top: 14px;
-    letter-spacing: 0.02em;
-  }
-  .project .arrow {
-    position: absolute;
-    top: 26px; right: 28px;
-    font-family: var(--mono);
-    color: var(--ink-faint);
-    transition: transform 0.25s ease, color 0.25s ease;
-  }
+  .project .stack { font-family: var(--mono); font-size: 12.5px; color: var(--accent); margin-top: 14px; letter-spacing: 0.02em; }
+  .project .arrow { position: absolute; top: 26px; right: 28px; font-family: var(--mono); color: var(--ink-faint); transition: transform 0.25s ease, color 0.25s ease; }
   .project:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
 
   /* ---------- Contact ---------- */
   .links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 8px; }
-  .links a {
-    font-family: var(--mono);
-    font-size: 15px;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1.5px solid var(--accent);
-    padding-bottom: 2px;
-    transition: color 0.2s ease;
-  }
+  .links a { font-family: var(--mono); font-size: 15px; color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; transition: color 0.2s ease; }
   .links a:hover { color: var(--accent); }
 
   /* ---------- Play Zone ---------- */
-  .play-intro {
-    color: var(--ink-soft);
-    margin-bottom: 28px;
-  }
-  .play-intro a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1.5px solid var(--accent);
-    padding-bottom: 1px;
-    transition: color 0.2s;
-  }
+  .play-intro { color: var(--ink-soft); margin-bottom: 28px; }
+  .play-intro a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; transition: color 0.2s; }
   .play-intro a:hover { color: var(--accent); }
-
-  .play-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 14px;
-  }
+  .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
   .play-card {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 22px;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    text-decoration: none;
-    color: inherit;
+    display: flex; flex-direction: column; padding: 20px 22px;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px;
+    text-decoration: none; color: inherit;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .play-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 14px 30px -18px rgba(29,107,95,0.4);
-  }
+  .play-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 30px -18px rgba(29,107,95,0.4); }
   .play-card-icon { font-size: 28px; line-height: 1; margin-bottom: 10px; }
-  .play-card-type {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 2px;
-  }
-  .play-card-title {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 19px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .play-card-desc {
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
+  .play-card-type { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2px; }
+  .play-card-title { font-family: var(--display); font-weight: 500; font-size: 19px; color: var(--ink); margin-bottom: 6px; }
+  .play-card-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
 
-  footer {
-    padding: 40px 0 60px;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--ink-faint);
-    text-align: center;
-  }
+  footer { padding: 40px 0 60px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); text-align: center; }
 
   @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .eyebrow, h1, .lede { opacity: 1; animation: none; }
   }
-
   @media (max-width: 540px) {
     body { font-size: 17px; }
     header { padding: 70px 0 50px; }
@@ -358,29 +168,30 @@
   <div class="nav-inner">
     <a href="#" class="nav-brand">ZW</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#playground">Play</a></li>
+      <li><a href="#about"      id="nav-about">About</a></li>
+      <li><a href="#skills"     id="nav-skills">Skills</a></li>
+      <li><a href="#projects"   id="nav-projects">Work</a></li>
+      <li><a href="#contact"    id="nav-contact">Contact</a></li>
+      <li><a href="#playground" id="nav-play">Play</a></li>
+      <li><button class="lang-btn" id="lang-btn" onclick="toggleLang()">中文</button></li>
     </ul>
   </div>
 </nav>
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">Researcher · ML & Combinatorial Optimization</div>
-    <h1>Hi, I'm Zhiyuan Wang. I study how machines <em>learn to optimize.</em></h1>
-    <p class="lede">My work sits at the intersection of reinforcement learning and combinatorial optimization — teaching neural policies to solve hard problems like Max-Cut, and learning to optimize signals in wireless systems. Currently focused on the <a href="#projects">L2A framework</a> for graph problems.</p>
+    <div class="eyebrow" id="eyebrow">Researcher · ML & Combinatorial Optimization</div>
+    <h1 id="hero-h1">Hi, I'm Zhiyuan Wang. I study how machines <em>learn to optimize.</em></h1>
+    <p class="lede" id="hero-lede">My work sits at the intersection of reinforcement learning and combinatorial optimization — teaching neural policies to solve hard problems like Max-Cut, and learning to optimize signals in wireless systems. Currently focused on the <a href="#projects">L2A framework</a> for graph problems.</p>
   </div>
 </header>
 
 <section id="about">
   <div class="wrap">
-    <div class="sec-label">About</div>
+    <div class="sec-label" id="sec-about">About</div>
     <div class="prose">
-      <p>I'm a researcher working on <strong>learning-based methods for optimization</strong>. Most of my time goes into designing neural network policies that learn to navigate large combinatorial search spaces — combining policy-gradient training with classical local search.</p>
-      <p>Outside the lab, I read a fair amount of science fiction and literary fiction, and I have a long-standing interest in theology and history. I think the best research, like the best stories, comes from sitting with a hard problem long enough to see it differently.</p>
+      <p id="about-p1">I'm a researcher working on <strong>learning-based methods for optimization</strong>. Most of my time goes into designing neural network policies that learn to navigate large combinatorial search spaces — combining policy-gradient training with classical local search.</p>
+      <p id="about-p2">Outside the lab, I read a fair amount of science fiction and literary fiction, and I have a long-standing interest in theology and history. I think the best research, like the best stories, comes from sitting with a hard problem long enough to see it differently.</p>
     </div>
     <div class="tags">
       <span class="tag">Reinforcement Learning</span>
@@ -394,22 +205,22 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-label">Skills</div>
+    <div class="sec-label" id="sec-skills">Skills</div>
     <div class="skills-grid">
       <div class="skill-group">
-        <div class="skill-group-title">Languages</div>
+        <div class="skill-group-title" id="skill-lang">Languages</div>
         <div class="skill-list">Python<br>C++<br>SQL<br>JavaScript<br>HTML / CSS</div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">ML & RL</div>
+        <div class="skill-group-title" id="skill-ml">ML & RL</div>
         <div class="skill-list">PyTorch<br>Reinforcement Learning<br>Graph Neural Nets<br>Transformers<br>Policy Gradient</div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Mathematics</div>
+        <div class="skill-group-title" id="skill-math">Mathematics</div>
         <div class="skill-list">Combinatorial Opt.<br>Linear Programming<br>Graph Theory<br>Probability<br>Stochastic Proc.</div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Engineering</div>
+        <div class="skill-group-title" id="skill-eng">Engineering</div>
         <div class="skill-list">Git & GitHub<br>Linux<br>LaTeX<br>React / Vite<br>Data Analysis</div>
       </div>
     </div>
@@ -418,45 +229,45 @@
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-label">Selected Work</div>
+    <div class="sec-label" id="sec-projects">Selected Work</div>
 
     <a class="project" href="#">
       <span class="arrow">↗</span>
       <div class="project-top">
-        <h3>L2A — Learning to Anneal</h3>
+        <h3 id="p1-title">L2A — Learning to Anneal</h3>
         <span class="year">2025–26</span>
       </div>
-      <p>A reinforcement learning framework for graph combinatorial optimization, applied to Max-Cut on Barabási–Albert graphs. Couples a Transformer-based policy with local search and curriculum learning to progressively reshape the search operator.</p>
+      <p id="p1-desc">A reinforcement learning framework for graph combinatorial optimization, applied to Max-Cut on Barabási–Albert graphs. Couples a Transformer-based policy with local search and curriculum learning to progressively reshape the search operator.</p>
       <div class="stack">PyTorch · Policy Gradient · Graph Transformer · Curriculum Learning</div>
     </a>
 
     <a class="project" href="#">
       <span class="arrow">↗</span>
       <div class="project-top">
-        <h3>Learning to Optimize Beamforming</h3>
+        <h3 id="p2-title">Learning to Optimize Beamforming</h3>
         <span class="year">2025</span>
       </div>
-      <p>A dual-stream Transformer (L2OTransformer) for multi-user MIMO beamforming, with user-level and antenna-level attention. Explored zero-shot generalization across varying numbers of users via masking, refined with projected gradient descent.</p>
+      <p id="p2-desc">A dual-stream Transformer (L2OTransformer) for multi-user MIMO beamforming, with user-level and antenna-level attention. Explored zero-shot generalization across varying numbers of users via masking, refined with projected gradient descent.</p>
       <div class="stack">PyTorch · Transformers · MIMO · PGD Refinement</div>
     </a>
 
     <a class="project" href="#">
       <span class="arrow">↗</span>
       <div class="project-top">
-        <h3>Airline Overbooking Simulator</h3>
+        <h3 id="p3-title">Airline Overbooking Simulator</h3>
         <span class="year">2025</span>
       </div>
-      <p>An open-source simulation comparing airline bumping policies, built during RCOS. Python simulation core with an HTML interface and SQL-backed data layer for analyzing overbooking strategies.</p>
+      <p id="p3-desc">An open-source simulation comparing airline bumping policies, built during RCOS. Python simulation core with an HTML interface and SQL-backed data layer for analyzing overbooking strategies.</p>
       <div class="stack">Python · Simulation · SQL · HTML</div>
     </a>
 
     <a class="project" href="#">
       <span class="arrow">↗</span>
       <div class="project-top">
-        <h3>Deep RL Coursework</h3>
+        <h3 id="p4-title">Deep RL Coursework</h3>
         <span class="year">2024–25</span>
       </div>
-      <p>A series of RL implementations: Double DQN for CartPole and Pong, Q-learning with state discretization for Mountain Car and Pendulum, and dynamic programming for MDP environments.</p>
+      <p id="p4-desc">A series of RL implementations: Double DQN for CartPole and Pong, Q-learning with state discretization for Mountain Car and Pendulum, and dynamic programming for MDP environments.</p>
       <div class="stack">PyTorch · DQN · Q-Learning · Dynamic Programming</div>
     </a>
   </div>
@@ -464,67 +275,217 @@
 
 <section id="contact">
   <div class="wrap">
-    <div class="sec-label">Get in Touch</div>
+    <div class="sec-label" id="sec-contact">Get in Touch</div>
     <div class="prose">
-      <p>Happy to talk about reinforcement learning, optimization, or anything at the intersection of the two. Reach me here:</p>
+      <p id="contact-p">Happy to talk about reinforcement learning, optimization, or anything at the intersection of the two. Reach me here:</p>
     </div>
     <div class="links">
-      <a href="mailto:wangzhiyuanstan@outlook.com">Email</a>
+      <a href="mailto:wangzhiyuanstan@outlook.com" id="link-email">Email</a>
       <a href="https://github.com/JuanerW">GitHub</a>
       <a href="https://scholar.google.com/citations?user=otnkvlMAAAAJ&hl=en">Google Scholar</a>
-      <a href="./resume.pdf">Resume (PDF)</a>
+      <a href="./resume.pdf" id="link-resume">Resume (PDF)</a>
     </div>
   </div>
 </section>
 
 <section id="playground">
   <div class="wrap">
-    <div class="sec-label">Play Zone</div>
-    <p class="play-intro">A small corner of the internet I built for fun — games and everyday tools. <a href="./my-site/">Open the full app ↗</a></p>
+    <div class="sec-label" id="sec-play">Play Zone</div>
+    <p class="play-intro" id="play-intro">A small corner of the internet I built for fun — games and everyday tools. <a href="./my-site/" id="play-open">Open the full app ↗</a></p>
     <div class="play-grid">
       <a class="play-card" href="./my-site/#/games/2048">
         <div class="play-card-icon">🔢</div>
-        <div class="play-card-type">Game</div>
-        <div class="play-card-title">2048</div>
-        <div class="play-card-desc">Merge tiles and chase the 2048 square.</div>
+        <div class="play-card-type" id="card-type-game1">Game</div>
+        <div class="play-card-title" id="card-title-2048">2048</div>
+        <div class="play-card-desc" id="card-desc-2048">Merge tiles and chase the 2048 square.</div>
       </a>
       <a class="play-card" href="./my-site/#/games/snake">
         <div class="play-card-icon">🐍</div>
-        <div class="play-card-type">Game</div>
-        <div class="play-card-title">贪吃蛇</div>
-        <div class="play-card-desc">Classic snake — eat more, move faster.</div>
+        <div class="play-card-type" id="card-type-game2">Game</div>
+        <div class="play-card-title" id="card-title-snake">Snake</div>
+        <div class="play-card-desc" id="card-desc-snake">Classic snake — eat more, move faster.</div>
       </a>
       <a class="play-card" href="./my-site/#/tools/notepad">
         <div class="play-card-icon">📝</div>
-        <div class="play-card-type">Tool</div>
-        <div class="play-card-title">记事本</div>
-        <div class="play-card-desc">Quick notes, auto-saved locally.</div>
+        <div class="play-card-type" id="card-type-tool1">Tool</div>
+        <div class="play-card-title" id="card-title-notepad">Notepad</div>
+        <div class="play-card-desc" id="card-desc-notepad">Quick notes, auto-saved locally.</div>
       </a>
       <a class="play-card" href="./my-site/#/tools/calendar">
         <div class="play-card-icon">📅</div>
-        <div class="play-card-type">Tool</div>
-        <div class="play-card-title">日历</div>
-        <div class="play-card-desc">Browse months and jot down reminders.</div>
+        <div class="play-card-type" id="card-type-tool2">Tool</div>
+        <div class="play-card-title" id="card-title-cal">Calendar</div>
+        <div class="play-card-desc" id="card-desc-cal">Browse months and jot down reminders.</div>
       </a>
       <a class="play-card" href="./my-site/#/tools/calculator">
         <div class="play-card-icon">🧮</div>
-        <div class="play-card-type">Tool</div>
-        <div class="play-card-title">计算器</div>
-        <div class="play-card-desc">A clean calculator for everyday math.</div>
+        <div class="play-card-type" id="card-type-tool3">Tool</div>
+        <div class="play-card-title" id="card-title-calc">Calculator</div>
+        <div class="play-card-desc" id="card-desc-calc">A clean calculator for everyday math.</div>
       </a>
       <a class="play-card" href="./my-site/#/tools/spinner">
         <div class="play-card-icon">🎡</div>
-        <div class="play-card-type">Tool</div>
-        <div class="play-card-title">转盘抽奖</div>
-        <div class="play-card-desc">Add options, spin the wheel — decide!</div>
+        <div class="play-card-type" id="card-type-tool4">Tool</div>
+        <div class="play-card-title" id="card-title-spin">Spinner</div>
+        <div class="play-card-desc" id="card-desc-spin">Add options, spin the wheel — decide!</div>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">© 2026 Zhiyuan Wang · Built with plain HTML, hosted on GitHub Pages</div>
+  <div class="wrap" id="footer-text">© 2026 Zhiyuan Wang · Built with plain HTML, hosted on GitHub Pages</div>
 </footer>
 
+<script>
+const translations = {
+  en: {
+    htmlLang: 'en',
+    btnLabel: '中文',
+    eyebrow: 'Researcher · ML & Combinatorial Optimization',
+    heroH1: 'Hi, I\'m Zhiyuan Wang. I study how machines <em>learn to optimize.</em>',
+    heroLede: 'My work sits at the intersection of reinforcement learning and combinatorial optimization — teaching neural policies to solve hard problems like Max-Cut, and learning to optimize signals in wireless systems. Currently focused on the <a href="#projects">L2A framework</a> for graph problems.',
+    navAbout: 'About', navSkills: 'Skills', navProjects: 'Work', navContact: 'Contact', navPlay: 'Play',
+    secAbout: 'About',
+    aboutP1: 'I\'m a researcher working on <strong>learning-based methods for optimization</strong>. Most of my time goes into designing neural network policies that learn to navigate large combinatorial search spaces — combining policy-gradient training with classical local search.',
+    aboutP2: 'Outside the lab, I read a fair amount of science fiction and literary fiction, and I have a long-standing interest in theology and history. I think the best research, like the best stories, comes from sitting with a hard problem long enough to see it differently.',
+    secSkills: 'Skills',
+    skillLang: 'Languages', skillMl: 'ML & RL', skillMath: 'Mathematics', skillEng: 'Engineering',
+    secProjects: 'Selected Work',
+    p1Title: 'L2A — Learning to Anneal',
+    p1Desc: 'A reinforcement learning framework for graph combinatorial optimization, applied to Max-Cut on Barabási–Albert graphs. Couples a Transformer-based policy with local search and curriculum learning to progressively reshape the search operator.',
+    p2Title: 'Learning to Optimize Beamforming',
+    p2Desc: 'A dual-stream Transformer (L2OTransformer) for multi-user MIMO beamforming, with user-level and antenna-level attention. Explored zero-shot generalization across varying numbers of users via masking, refined with projected gradient descent.',
+    p3Title: 'Airline Overbooking Simulator',
+    p3Desc: 'An open-source simulation comparing airline bumping policies, built during RCOS. Python simulation core with an HTML interface and SQL-backed data layer for analyzing overbooking strategies.',
+    p4Title: 'Deep RL Coursework',
+    p4Desc: 'A series of RL implementations: Double DQN for CartPole and Pong, Q-learning with state discretization for Mountain Car and Pendulum, and dynamic programming for MDP environments.',
+    secContact: 'Get in Touch',
+    contactP: 'Happy to talk about reinforcement learning, optimization, or anything at the intersection of the two. Reach me here:',
+    linkEmail: 'Email', linkResume: 'Resume (PDF)',
+    secPlay: 'Play Zone',
+    playIntro: 'A small corner of the internet I built for fun — games and everyday tools. <a href="./my-site/" id="play-open">Open the full app ↗</a>',
+    cardTypeGame: 'Game', cardTypeTool: 'Tool',
+    titleSnake: 'Snake',   descSnake: 'Classic snake — eat more, move faster.',
+    title2048:  '2048',    desc2048:  'Merge tiles and chase the 2048 square.',
+    titleNotepad: 'Notepad',    descNotepad: 'Quick notes, auto-saved locally.',
+    titleCal:     'Calendar',   descCal:     'Browse months and jot down reminders.',
+    titleCalc:    'Calculator', descCalc:    'A clean calculator for everyday math.',
+    titleSpin:    'Spinner',    descSpin:    'Add options, spin the wheel — decide!',
+    footer: '© 2026 Zhiyuan Wang · Built with plain HTML, hosted on GitHub Pages',
+  },
+  zh: {
+    htmlLang: 'zh-CN',
+    btnLabel: 'EN',
+    eyebrow: '研究员 · 机器学习与组合优化',
+    heroH1: '你好，我是王志远。我研究机器如何<em>学会优化。</em>',
+    heroLede: '我的研究处于强化学习与组合优化的交叉地带——训练神经网络策略，让它学会求解 Max-Cut 等困难问题，以及学习优化无线系统中的信号。目前专注于针对图问题的 <a href="#projects">L2A 框架</a>。',
+    navAbout: '关于', navSkills: '技能', navProjects: '项目', navContact: '联系', navPlay: '玩乐',
+    secAbout: '关于',
+    aboutP1: '我是一名研究<strong>基于学习的优化方法</strong>的研究员。大部分时间用于设计神经网络策略，让它在大型组合搜索空间中学会导航——将策略梯度训练与经典局部搜索相结合。',
+    aboutP2: '实验室之外，我读大量科幻和文学小说，并对神学与历史有持久的兴趣。我认为最好的研究和最好的故事一样，都来自于对一个难题的长期凝视，直到以全新的眼光看待它。',
+    secSkills: '技能',
+    skillLang: '编程语言', skillMl: '机器学习与强化学习', skillMath: '数学', skillEng: '工程',
+    secProjects: '精选项目',
+    p1Title: 'L2A — 学会退火',
+    p1Desc: '面向图组合优化的强化学习框架，应用于 Barabási–Albert 图上的 Max-Cut 问题。将基于 Transformer 的策略与局部搜索结合，通过课程学习逐步塑造搜索算子。',
+    p2Title: '学会优化波束成形',
+    p2Desc: '针对多用户 MIMO 波束成形的双流 Transformer（L2OTransformer），具有用户级和天线级注意力。通过掩码探索跨不同用户数量的零样本泛化，使用投影梯度下降进行精化。',
+    p3Title: '航空公司超售模拟器',
+    p3Desc: '比较航空公司拒载策略的开源模拟，在 RCOS 期间构建。Python 仿真核心，HTML 界面，SQL 数据层，用于分析超售策略。',
+    p4Title: '深度强化学习课程作业',
+    p4Desc: '一系列 RL 实现：CartPole 和 Pong 的 Double DQN、Mountain Car 和 Pendulum 的离散化 Q-learning，以及 MDP 环境的动态规划。',
+    secContact: '联系方式',
+    contactP: '欢迎交流强化学习、优化或两者交叉的任何话题。联系方式：',
+    linkEmail: '邮件', linkResume: '简历 (PDF)',
+    secPlay: '玩乐区',
+    playIntro: '我为了好玩搭建的小角落——游戏和日常工具。<a href="./my-site/" id="play-open">打开完整应用 ↗</a>',
+    cardTypeGame: '游戏', cardTypeTool: '工具',
+    titleSnake: '贪吃蛇', descSnake: '经典贪吃蛇，吃得越多越难',
+    title2048:  '2048',   desc2048:  '合并数字，挑战 2048！',
+    titleNotepad: '记事本', descNotepad: '随手记，自动保存',
+    titleCal:     '日历',   descCal:     '查看日期与备忘',
+    titleCalc:    '计算器', descCalc:    '日常计算用',
+    titleSpin:    '转盘抽奖', descSpin:  '填入选项，转盘决定！',
+    footer: '© 2026 王志远 · 用纯 HTML 构建，托管于 GitHub Pages',
+  }
+}
+
+function applyLang(lang) {
+  const t = translations[lang]
+  document.documentElement.lang = t.htmlLang
+  document.getElementById('lang-btn').textContent = t.btnLabel
+
+  document.getElementById('eyebrow').textContent = t.eyebrow
+  document.getElementById('hero-h1').innerHTML = t.heroH1
+  document.getElementById('hero-lede').innerHTML = t.heroLede
+
+  document.getElementById('nav-about').textContent    = t.navAbout
+  document.getElementById('nav-skills').textContent   = t.navSkills
+  document.getElementById('nav-projects').textContent = t.navProjects
+  document.getElementById('nav-contact').textContent  = t.navContact
+  document.getElementById('nav-play').textContent     = t.navPlay
+
+  document.getElementById('sec-about').textContent    = t.secAbout
+  document.getElementById('about-p1').innerHTML       = t.aboutP1
+  document.getElementById('about-p2').textContent     = t.aboutP2
+
+  document.getElementById('sec-skills').textContent   = t.secSkills
+  document.getElementById('skill-lang').textContent   = t.skillLang
+  document.getElementById('skill-ml').textContent     = t.skillMl
+  document.getElementById('skill-math').textContent   = t.skillMath
+  document.getElementById('skill-eng').textContent    = t.skillEng
+
+  document.getElementById('sec-projects').textContent = t.secProjects
+  document.getElementById('p1-title').textContent     = t.p1Title
+  document.getElementById('p1-desc').textContent      = t.p1Desc
+  document.getElementById('p2-title').textContent     = t.p2Title
+  document.getElementById('p2-desc').textContent      = t.p2Desc
+  document.getElementById('p3-title').textContent     = t.p3Title
+  document.getElementById('p3-desc').textContent      = t.p3Desc
+  document.getElementById('p4-title').textContent     = t.p4Title
+  document.getElementById('p4-desc').textContent      = t.p4Desc
+
+  document.getElementById('sec-contact').textContent  = t.secContact
+  document.getElementById('contact-p').textContent    = t.contactP
+  document.getElementById('link-email').textContent   = t.linkEmail
+  document.getElementById('link-resume').textContent  = t.linkResume
+
+  document.getElementById('sec-play').textContent     = t.secPlay
+  document.getElementById('play-intro').innerHTML     = t.playIntro
+
+  document.getElementById('card-type-game1').textContent  = t.cardTypeGame
+  document.getElementById('card-type-game2').textContent  = t.cardTypeGame
+  document.getElementById('card-type-tool1').textContent  = t.cardTypeTool
+  document.getElementById('card-type-tool2').textContent  = t.cardTypeTool
+  document.getElementById('card-type-tool3').textContent  = t.cardTypeTool
+  document.getElementById('card-type-tool4').textContent  = t.cardTypeTool
+
+  document.getElementById('card-title-2048').textContent  = t.title2048
+  document.getElementById('card-desc-2048').textContent   = t.desc2048
+  document.getElementById('card-title-snake').textContent = t.titleSnake
+  document.getElementById('card-desc-snake').textContent  = t.descSnake
+  document.getElementById('card-title-notepad').textContent = t.titleNotepad
+  document.getElementById('card-desc-notepad').textContent  = t.descNotepad
+  document.getElementById('card-title-cal').textContent   = t.titleCal
+  document.getElementById('card-desc-cal').textContent    = t.descCal
+  document.getElementById('card-title-calc').textContent  = t.titleCalc
+  document.getElementById('card-desc-calc').textContent   = t.descCalc
+  document.getElementById('card-title-spin').textContent  = t.titleSpin
+  document.getElementById('card-desc-spin').textContent   = t.descSpin
+
+  document.getElementById('footer-text').textContent = t.footer
+}
+
+function toggleLang() {
+  const cur = localStorage.getItem('lang') || 'en'
+  const next = cur === 'en' ? 'zh' : 'en'
+  localStorage.setItem('lang', next)
+  applyLang(next)
+}
+
+// Apply saved language on page load
+applyLang(localStorage.getItem('lang') || 'en')
+</script>
 </body>
 </html>

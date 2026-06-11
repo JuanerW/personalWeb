@@ -1,69 +1,53 @@
 :root {
-  /* 主色调：暖橙 */
-  --color-amber-50:  #FAEEDA;
-  --color-amber-100: #FAC775;
-  --color-amber-400: #EF9F27;
-  --color-amber-600: #BA7517;
-  --color-amber-800: #633806;
+  /* ── New design system (matches home.html) ── */
+  --bg: #f4f1ea;
+  --bg-card: #fbf9f4;
+  --ink: #20211c;
+  --ink-soft: #54564d;
+  --ink-faint: #8a8b80;
+  --accent: #1d6b5f;
+  --accent-deep: #134a41;
+  --line: #ddd8cb;
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Newsreader', Georgia, serif;
 
-  /* 辅助色：珊瑚粉 */
-  --color-coral-50:  #FAECE7;
-  --color-coral-100: #F5C4B3;
-  --color-coral-400: #D85A30;
-  --color-coral-600: #993C1D;
-
-  /* 辅助色：粉紫 */
-  --color-pink-50:   #FBEAF0;
-  --color-pink-100:  #F4C0D1;
-  --color-pink-400:  #D4537E;
-  --color-pink-600:  #993556;
-
-  /* 辅助色：紫 */
-  --color-purple-50:  #EEEDFE;
-  --color-purple-400: #7F77DD;
-  --color-purple-600: #534AB7;
-  --color-purple-800: #3C3489;
-
-  /* 中性色 */
-  --color-gray-50:   #F1EFE8;
-  --color-gray-200:  #B4B2A9;
-  --color-gray-600:  #5F5E5A;
-  --color-gray-800:  #444441;
-
-  /* 语义色 */
-  --color-bg-page:        #FFF8F0;
-  --color-bg-surface:     #FFFFFF;
-  --color-text-primary:   #3D2B1F;
-  --color-text-secondary: #7A6355;
-  --color-border:         rgba(100, 60, 20, 0.12);
-
-  /* 阴影 */
-  --shadow-card: 0 4px 16px rgba(100, 60, 20, 0.10);
+  /* ── Legacy aliases so untouched CSS still resolves ── */
+  --color-bg-page: var(--bg);
+  --color-bg-surface: var(--bg-card);
+  --color-text-primary: var(--ink);
+  --color-text-secondary: var(--ink-soft);
+  --color-border: var(--line);
+  --color-amber-50: #ede8df;
+  --color-amber-100: #ddd8cb;
+  --color-amber-400: var(--accent);
+  --color-amber-600: var(--accent-deep);
+  --color-amber-800: var(--accent-deep);
+  --color-coral-400: var(--accent);
+  --color-coral-600: var(--accent-deep);
+  --shadow-card: 0 14px 30px -18px rgba(29, 107, 95, 0.4);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--color-text-primary);
-  background: var(--color-bg-page);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: radial-gradient(var(--line) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+::selection { background: var(--accent); color: #fff; }
 
-/* 动效规范 */
+a { text-decoration: none; color: inherit; }
+
+/* ── Game animations (kept from original) ── */
 @keyframes tile-appear {
   from { transform: scale(0); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
@@ -73,9 +57,4 @@ a {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.15); }
   100% { transform: scale(1); }
-}
-
-/* 通用交互过渡 */
-* {
-  transition: all 150ms ease;
 }

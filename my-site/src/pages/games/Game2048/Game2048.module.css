@@ -1,6 +1,6 @@
 .page {
-  min-height: calc(100vh - 56px);
-  padding: 24px;
+  min-height: calc(100vh - 47px);
+  padding: 32px 24px;
 }
 
 .container {
@@ -12,39 +12,43 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .back {
-  font-size: 16px;
-  color: var(--color-text-secondary);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
   white-space: nowrap;
+  transition: color 0.2s;
 }
-
-.back:hover {
-  color: var(--color-amber-400);
-}
+.back:hover { color: var(--accent); }
 
 .title {
-  font-size: 22px;
+  font-family: var(--display);
+  font-size: 26px;
   font-weight: 500;
+  color: var(--ink);
   flex: 1;
+  letter-spacing: -0.01em;
 }
 
 .resetBtn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background: var(--color-amber-400);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  background: var(--bg-card);
+  color: var(--ink-soft);
   cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
 }
-
-.resetBtn:hover {
-  background: var(--color-amber-600);
-}
+.resetBtn:hover { border-color: var(--accent); color: var(--accent); }
 
 .scoreRow {
   display: flex;
@@ -63,50 +67,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  background: rgba(244, 241, 234, 0.88);
+  border-radius: 12px;
   z-index: 10;
 }
 
-.overlayContent {
-  text-align: center;
-}
+.overlayContent { text-align: center; }
 
 .overlayText {
+  font-family: var(--display);
   font-size: 22px;
   font-weight: 500;
-  margin-bottom: 16px;
+  color: var(--ink);
+  margin-bottom: 18px;
 }
 
-.overlayBtns {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
+.overlayBtns { display: flex; gap: 10px; justify-content: center; }
 
 .btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: var(--color-amber-400);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  background: var(--accent);
+  color: #fff;
   cursor: pointer;
+  transition: background 0.2s;
 }
-
-.btn:hover {
-  background: var(--color-amber-600);
-}
+.btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
 
 .hint {
   text-align: center;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-top: 18px;
 }
 
 @media (max-width: 420px) {
-  .page {
-    padding: 16px;
-  }
+  .page { padding: 20px 16px; }
 }

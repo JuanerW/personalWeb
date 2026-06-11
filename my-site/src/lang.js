@@ -1,0 +1,96 @@
+const t = {
+  en: {
+    navTitle: '🎮 Games & Tools',
+    backToResume: '← Resume',
+    heroTitle: 'Welcome to my play corner ✨',
+    heroSubtitle: 'Casual games and handy everyday tools',
+    games: 'Games',
+    tools: 'Tools',
+    back: '← Back',
+    restart: 'Restart',
+    // 2048
+    won2048: '🎉 You got 2048!',
+    continueGame: 'Keep Going',
+    gameOver: 'Game Over',
+    hint2048: 'Arrow keys / swipe to move',
+    // Snake
+    snakeTitle: 'Snake',
+    pressToStart: 'Press an arrow key to start',
+    paused: 'Paused',
+    resume: 'Resume',
+    scoreLabel: 'Score: ',
+    hintSnake: 'Arrow keys / WASD / swipe  ·  Space to pause',
+    // Notepad
+    notepadTitle: 'Notepad',
+    notepadClear: 'Clear',
+    notepadConfirmClear: 'Confirm?',
+    notepadStatus: (n) => `Auto-saved · ${n} chars`,
+    notepadPlaceholder: 'Start typing…',
+    // Spinner
+    spinnerTitle: 'Spinner',
+    spinning: 'Spinning…',
+    spinStart: 'Spin',
+    optionList: (n) => `Options (${n})`,
+    addOption: '+ Add',
+    optionPlaceholder: 'Option name',
+    congrats: 'Winner!',
+    spinAgain: 'Spin Again',
+    // App cards
+    apps: {
+      '2048':       { title: '2048',       desc: 'Merge tiles, chase the 2048 square.' },
+      snake:        { title: 'Snake',       desc: 'Classic snake — eat more, move faster.' },
+      notepad:      { title: 'Notepad',     desc: 'Quick notes, auto-saved locally.' },
+      calendar:     { title: 'Calendar',    desc: 'Browse months and reminders.' },
+      calculator:   { title: 'Calculator',  desc: 'A clean everyday calculator.' },
+      spinner:      { title: 'Spinner',     desc: 'Add options, spin the wheel!' },
+    },
+  },
+  zh: {
+    navTitle: '🎮 小游戏与工具',
+    backToResume: '← 简历',
+    heroTitle: '欢迎来到我的小站 🎉',
+    heroSubtitle: '这里有休闲小游戏和实用的日常工具，随取随用',
+    games: '游戏',
+    tools: '工具',
+    back: '← 返回',
+    restart: '重新开始',
+    // 2048
+    won2048: '🎉 达成 2048！',
+    continueGame: '继续游戏',
+    gameOver: '游戏结束',
+    hint2048: '方向键 / 滑动 来操作',
+    // Snake
+    snakeTitle: '贪吃蛇',
+    pressToStart: '按方向键开始游戏',
+    paused: '已暂停',
+    resume: '继续',
+    scoreLabel: '得分：',
+    hintSnake: '方向键 / WASD / 滑动 来操作  ·  空格暂停',
+    // Notepad
+    notepadTitle: '记事本',
+    notepadClear: '清空',
+    notepadConfirmClear: '确认清空？',
+    notepadStatus: (n) => `已自动保存 · 共 ${n} 字`,
+    notepadPlaceholder: '开始输入...',
+    // Spinner
+    spinnerTitle: '转盘抽奖',
+    spinning: '转动中...',
+    spinStart: '开始转动',
+    optionList: (n) => `选项列表（${n}）`,
+    addOption: '+ 添加',
+    optionPlaceholder: '选项名称',
+    congrats: '恭喜！',
+    spinAgain: '再转一次',
+    // App cards
+    apps: {
+      '2048':       { title: '2048',    desc: '合并数字，挑战 2048！' },
+      snake:        { title: '贪吃蛇', desc: '经典贪吃蛇，吃得越多越难' },
+      notepad:      { title: '记事本', desc: '随手记，自动保存' },
+      calendar:     { title: '日历',   desc: '查看日期与备忘' },
+      calculator:   { title: '计算器', desc: '日常计算用' },
+      spinner:      { title: '转盘抽奖', desc: '填入选项，转盘决定！' },
+    },
+  },
+}
+
+export default t

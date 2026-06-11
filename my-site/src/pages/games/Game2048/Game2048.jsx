@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import { useLang } from '../../../LangContext'
 import use2048 from './hooks/use2048'
 import useSwipe from './hooks/useSwipe'
 import Board from './components/Board'
@@ -7,17 +8,13 @@ import ScorePanel from './components/ScorePanel'
 import styles from './Game2048.module.css'
 
 export default function Game2048() {
+  const { T } = useLang()
   const { board, score, bestScore, status, move, reset, continueGame, lastMove } = use2048()
 
   const handleKeyDown = useCallback((e) => {
-    const keyMap = {
-      ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
-    }
+    const keyMap = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' }
     const dir = keyMap[e.key]
-    if (dir) {
-      e.preventDefault()
-      move(dir)
-    }
+    if (dir) { e.preventDefault(); move(dir) }
   }, [move])
 
   useSwipe(move)
@@ -31,9 +28,9 @@ export default function Game2048() {
     <div className={styles.page}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Link to="/" className={styles.back}>&larr; 返回</Link>
+          <Link to="/" className={styles.back}>{T.back}</Link>
           <h1 className={styles.title}>2048</h1>
-          <button className={styles.resetBtn} onClick={reset}>重新开始</button>
+          <button className={styles.resetBtn} onClick={reset}>{T.restart}</button>
         </div>
 
         <div className={styles.scoreRow}>
@@ -46,24 +43,24 @@ export default function Game2048() {
             <div className={styles.overlay}>
               {status === 'won' && (
                 <div className={styles.overlayContent}>
-                  <div className={styles.overlayText}>🎉 达成 2048！</div>
+                  <div className={styles.overlayText}>{T.won2048}</div>
                   <div className={styles.overlayBtns}>
-                    <button className={styles.btn} onClick={continueGame}>继续游戏</button>
-                    <button className={styles.btn} onClick={reset}>重新开始</button>
+                    <button className={styles.btn} onClick={continueGame}>{T.continueGame}</button>
+                    <button className={styles.btn} onClick={reset}>{T.restart}</button>
                   </div>
                 </div>
               )}
               {status === 'lost' && (
                 <div className={styles.overlayContent}>
-                  <div className={styles.overlayText}>游戏结束</div>
-                  <button className={styles.btn} onClick={reset}>重新开始</button>
+                  <div className={styles.overlayText}>{T.gameOver}</div>
+                  <button className={styles.btn} onClick={reset}>{T.restart}</button>
                 </div>
               )}
             </div>
           )}
         </div>
 
-        <p className={styles.hint}>方向键 / 滑动 来操作</p>
+        <p className={styles.hint}>{T.hint2048}</p>
       </div>
     </div>
   )

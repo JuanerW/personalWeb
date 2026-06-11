@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useLang } from '../../../LangContext'
 import useSpinner from './hooks/useSpinner'
 import styles from './Spinner.module.css'
 
@@ -14,18 +15,16 @@ function getSectorPath(cx, cy, r, startAngle, endAngle) {
 }
 
 export default function Spinner() {
-  const { items, rotation, rotating, result, addItem, updateItem, removeItem, spin, closeResult, setResult } = useSpinner()
+  const { T } = useLang()
+  const { items, rotation, rotating, result, addItem, updateItem, removeItem, spin, closeResult } = useSpinner()
 
-  const cx = 150
-  const cy = 150
-  const r = 140
+  const cx = 150, cy = 150, r = 140
   const sectorSize = items.length > 0 ? (2 * Math.PI) / items.length : 0
 
   function handleEmojiSelect(itemId) {
     const currentItem = items.find(i => i.id === itemId)
     if (!currentItem) return
-    const currentIndex = emojis.indexOf(currentItem.emoji)
-    const nextIndex = (currentIndex + 1) % emojis.length
+    const nextIndex = (emojis.indexOf(currentItem.emoji) + 1) % emojis.length
     updateItem(itemId, { emoji: emojis[nextIndex] })
   }
 
@@ -33,8 +32,8 @@ export default function Spinner() {
     <div className={styles.page}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Link to="/" className={styles.back}>&larr; 返回</Link>
-          <h1 className={styles.title}>转盘抽奖</h1>
+          <Link to="/" className={styles.back}>{T.back}</Link>
+          <h1 className={styles.title}>{T.spinnerTitle}</h1>
         </div>
 
         <div className={styles.content}>
@@ -52,22 +51,11 @@ export default function Spinner() {
                     return (
                       <g key={item.id}>
                         <path d={path} fill={item.color} stroke="white" strokeWidth="2" />
-                        <text
-                          x={textX}
-                          y={textY}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize="16"
-                        >
-                          {item.emoji}
-                        </text>
+                        <text x={textX} y={textY} textAnchor="middle" dominantBaseline="central" fontSize="16">{item.emoji}</text>
                         <text
                           x={cx + (r * 0.75) * Math.cos(midAngle)}
                           y={cy + (r * 0.75) * Math.sin(midAngle)}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize="11"
-                          fill="#3D2B1F"
+                          textAnchor="middle" dominantBaseline="central" fontSize="11" fill="#20211c"
                         >
                           {item.label.length > 4 ? item.label.slice(0, 4) + '..' : item.label}
                         </text>
@@ -75,56 +63,31 @@ export default function Spinner() {
                     )
                   })}
                 </g>
-                {/* Pointer */}
-                <polygon points="150,10 143,28 157,28" fill="var(--color-amber-800)" />
+                <polygon points="150,10 143,28 157,28" fill={`var(--accent-deep)`} />
               </svg>
             </div>
-
-            <button
-              className={styles.spinBtn}
-              onClick={spin}
-              disabled={rotating || items.length < 2}
-            >
-              {rotating ? '转动中...' : '开始转动'}
+            <button className={styles.spinBtn} onClick={spin} disabled={rotating || items.length < 2}>
+              {rotating ? T.spinning : T.spinStart}
             </button>
           </div>
 
           <div className={styles.listSection}>
             <div className={styles.listHeader}>
-              <span className={styles.listTitle}>选项列表（{items.length}）</span>
-              <button className={styles.addBtn} onClick={addItem}>+ 添加</button>
+              <span className={styles.listTitle}>{T.optionList(items.length)}</span>
+              <button className={styles.addBtn} onClick={addItem}>{T.addOption}</button>
             </div>
             <div className={styles.list}>
               {items.map(item => (
                 <div key={item.id} className={styles.item}>
-                  <button className={styles.emojiBtn} onClick={() => handleEmojiSelect(item.id)}>
-                    {item.emoji}
-                  </button>
+                  <button className={styles.emojiBtn} onClick={() => handleEmojiSelect(item.id)}>{item.emoji}</button>
                   <input
                     className={styles.nameInput}
                     value={item.label}
                     onChange={e => updateItem(item.id, { label: e.target.value })}
-                    onBlur={() => {
-                      const saved = localStorage.getItem('spinner-items')
-                      if (saved) {
-                        // Already saved via updateItem
-                      }
-                    }}
-                    placeholder="选项名称"
+                    placeholder={T.optionPlaceholder}
                   />
-                  <input
-                    type="color"
-                    className={styles.colorInput}
-                    value={item.color}
-                    onChange={e => updateItem(item.id, { color: e.target.value })}
-                  />
-                  <button
-                    className={styles.delBtn}
-                    onClick={() => removeItem(item.id)}
-                    disabled={items.length <= 2}
-                  >
-                    ✕
-                  </button>
+                  <input type="color" className={styles.colorInput} value={item.color} onChange={e => updateItem(item.id, { color: e.target.value })} />
+                  <button className={styles.delBtn} onClick={() => removeItem(item.id)} disabled={items.length <= 2}>✕</button>
                 </div>
               ))}
             </div>
@@ -134,15 +97,11 @@ export default function Spinner() {
 
       {result && (
         <div className={styles.overlay} onClick={closeResult}>
-          <div
-            className={styles.resultCard}
-            style={{ backgroundColor: result.color }}
-            onClick={e => e.stopPropagation()}
-          >
+          <div className={styles.resultCard} style={{ backgroundColor: result.color }} onClick={e => e.stopPropagation()}>
             <div className={styles.resultEmoji}>{result.emoji}</div>
-            <div className={styles.resultLabel}>恭喜！</div>
+            <div className={styles.resultLabel}>{T.congrats}</div>
             <div className={styles.resultName}>{result.label}</div>
-            <button className={styles.reSpinBtn} onClick={closeResult}>再转一次</button>
+            <button className={styles.reSpinBtn} onClick={closeResult}>{T.spinAgain}</button>
           </div>
         </div>
       )}
