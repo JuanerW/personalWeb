@@ -1,0 +1,100 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+}
+
+/* ---------- Tile ---------- */
+.tile {
+  width: 62px;
+  height: 62px;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--bg-card);
+  user-select: none;
+}
+
+.tile[data-state="typed"] {
+  border-color: var(--ink-soft);
+}
+
+.tile[data-state="correct"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.tile[data-state="present"] {
+  background: #b5933a;
+  border-color: #b5933a;
+  color: #fff;
+}
+
+.tile[data-state="absent"] {
+  background: #787c7e;
+  border-color: #787c7e;
+  color: #fff;
+}
+
+/* ---------- Flip reveal animation ---------- */
+.reveal {
+  animation: tile-flip 500ms ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes tile-flip {
+  /* First half: squish down showing the uncolored face */
+  0%  {
+    transform: scaleY(1);
+    background: var(--bg-card);
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  45% {
+    transform: scaleY(0);
+    background: var(--bg-card);
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  /* At midpoint, let CSS take over → shows the data-state color */
+  55% { transform: scaleY(0); }
+  /* Second half: expand back up showing the final color */
+  100% { transform: scaleY(1); }
+}
+
+/* ---------- Shake animation for invalid word ---------- */
+.shake {
+  animation: row-shake 500ms ease;
+}
+
+@keyframes row-shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  35%       { transform: translateX(6px); }
+  55%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+@media (max-width: 420px) {
+  .tile {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+  .row { gap: 5px; }
+  .board { gap: 6px; }
+}

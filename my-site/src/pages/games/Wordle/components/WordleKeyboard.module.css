@@ -1,0 +1,65 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.key {
+  height: 56px;
+  min-width: 40px;
+  padding: 0 4px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg-card);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key:active { transform: scale(0.93); }
+
+.wide {
+  min-width: 64px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* Letter state colors */
+.correct {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.present {
+  background: #b5933a;
+  border-color: #b5933a;
+  color: #fff;
+}
+
+.absent {
+  background: #787c7e;
+  border-color: #787c7e;
+  color: #fff;
+}
+
+@media (max-width: 420px) {
+  .key    { height: 48px; min-width: 32px; font-size: 12px; }
+  .wide   { min-width: 52px; font-size: 10px; }
+  .row    { gap: 4px; }
+}

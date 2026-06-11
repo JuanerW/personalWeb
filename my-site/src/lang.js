@@ -20,6 +20,17 @@ const t = {
     resume: 'Resume',
     scoreLabel: 'Score: ',
     hintSnake: 'Arrow keys / WASD / swipe  ·  Space to pause',
+    // Wordle
+    wordleTitle: 'Wordle',
+    wordleNew: 'New',
+    wordleEnter: 'Enter',
+    wordleNotEnough: 'Not enough letters',
+    wordleInvalidWord: 'Not a valid word',
+    wordleWon: n => n === 1 ? 'Genius! First try!' : `Solved in ${n}!`,
+    wordleLost: ans => `The word was ${ans}`,
+    wordleShare: 'Share',
+    wordleCopied: 'Copied!',
+    hintWordle: 'Type or tap · Enter to submit · Backspace to delete',
     // Notepad
     notepadTitle: 'Notepad',
     notepadClear: 'Clear',
@@ -39,6 +50,7 @@ const t = {
     apps: {
       '2048':       { title: '2048',       desc: 'Merge tiles, chase the 2048 square.' },
       snake:        { title: 'Snake',       desc: 'Classic snake — eat more, move faster.' },
+      wordle:       { title: 'Wordle',      desc: 'Guess the daily 5-letter word in 6 tries.' },
       notepad:      { title: 'Notepad',     desc: 'Quick notes, auto-saved locally.' },
       calendar:     { title: 'Calendar',    desc: 'Browse months and reminders.' },
       calculator:   { title: 'Calculator',  desc: 'A clean everyday calculator.' },
@@ -67,6 +79,17 @@ const t = {
     resume: '继续',
     scoreLabel: '得分：',
     hintSnake: '方向键 / WASD / 滑动 来操作  ·  空格暂停',
+    // Wordle
+    wordleTitle: 'Wordle',
+    wordleNew: '新游戏',
+    wordleEnter: '确认',
+    wordleNotEnough: '字母不够',
+    wordleInvalidWord: '不是有效单词',
+    wordleWon: n => n === 1 ? '天才！一次猜中！' : `${n} 次猜中！`,
+    wordleLost: ans => `答案是 ${ans}`,
+    wordleShare: '分享结果',
+    wordleCopied: '已复制！',
+    hintWordle: '输入或点击字母 · 确认键提交 · 退格键删除',
     // Notepad
     notepadTitle: '记事本',
     notepadClear: '清空',
@@ -86,6 +109,7 @@ const t = {
     apps: {
       '2048':       { title: '2048',    desc: '合并数字，挑战 2048！' },
       snake:        { title: '贪吃蛇', desc: '经典贪吃蛇，吃得越多越难' },
+      wordle:       { title: 'Wordle', desc: '6 次机会猜出每日 5 字母单词。' },
       notepad:      { title: '记事本', desc: '随手记，自动保存' },
       calendar:     { title: '日历',   desc: '查看日期与备忘' },
       calculator:   { title: '计算器', desc: '日常计算用' },

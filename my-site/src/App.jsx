@@ -8,6 +8,7 @@ import Notepad from './pages/tools/Notepad/Notepad'
 import Calendar from './pages/tools/Calendar/Calendar'
 import Calculator from './pages/tools/Calculator/Calculator'
 import Spinner from './pages/tools/Spinner/Spinner'
+import Wordle from './pages/games/Wordle/Wordle'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/games/2048" element={<Game2048 />} />
           <Route path="/games/snake" element={<Snake />} />
+          <Route path="/games/wordle" element={<Wordle />} />
           <Route path="/tools/notepad" element={<Notepad />} />
           <Route path="/tools/calendar" element={<Calendar />} />
           <Route path="/tools/calculator" element={<Calculator />} />

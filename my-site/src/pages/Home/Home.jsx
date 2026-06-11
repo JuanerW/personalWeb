@@ -6,8 +6,9 @@ export default function Home() {
   const { T } = useLang()
 
   const games = [
-    { key: '2048',  path: '/games/2048',  emoji: '🔢' },
-    { key: 'snake', path: '/games/snake', emoji: '🐍' },
+    { key: '2048',   path: '/games/2048',   emoji: '🔢' },
+    { key: 'snake',  path: '/games/snake',  emoji: '🐍' },
+    { key: 'wordle', path: '/games/wordle', emoji: '🟩' },
   ]
   const tools = [
     { key: 'notepad',    path: '/tools/notepad',    emoji: '📝' },
