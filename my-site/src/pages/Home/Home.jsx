@@ -14,6 +14,7 @@ export default function Home() {
     { key: 'calendar',   path: '/tools/calendar',   emoji: '📅' },
     { key: 'calculator', path: '/tools/calculator', emoji: '🧮' },
     { key: 'spinner',    path: '/tools/spinner',    emoji: '🎡' },
+    { key: 'tba',        href: '/personalWeb/TBA/', emoji: '📋' },
   ]
 
   return (
@@ -42,7 +43,7 @@ export default function Home() {
           <div className={styles.secLabel}>{T.tools}</div>
           <div className={styles.cardGrid}>
             {tools.map(t => (
-              <AppCard key={t.key} path={t.path} emoji={t.emoji}
+              <AppCard key={t.key} path={t.path} href={t.href} emoji={t.emoji}
                 type={T.tools}
                 title={T.apps[t.key].title}
                 description={T.apps[t.key].desc} />

@@ -1,0 +1,358 @@
+body {
+    font-family: 'Roboto', sans-serif; /* Applying Google Font: Roboto */
+    margin: 0;
+    padding: 0;
+    background: #FDFCDC;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #333;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header Styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #F07167; /* Primary */
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.header-center h1 {
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right .logo {
+    width: 50px;
+    margin-left: 10px;
+}
+
+.header-right .header-icon {
+    margin-left: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.header-right .header-icon:hover {
+    color: #0081A7;
+    transform: scale(1.2);
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F07167; /* Primary */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+}
+
+.sidebar.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.sidebar a, .sidebar .login-btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: background-color 0.3s, padding 0.3s;
+}
+
+.sidebar a:hover, .sidebar .login-btn:hover {
+    background-color: #FF8C89; /* Primary Light */
+    color: #0081A7; /* Text */
+    padding-left: 25px; /* Indent on hover */
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+.time-range {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time-range button {
+    background-color: #F07167;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.time-range button:hover {
+    background-color: #C14A4E;
+}
+
+.report-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.chart-box {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: 400px;
+}
+
+.task-categories-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.task-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
+.category-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-box.do {
+    background-color: #F07167; /* Main Red Color */
+}
+
+.category-box.do h3 {
+    color: white;
+    font-family: cursive;
+}
+
+.category-box.do p {
+    color: white;
+    margin: unset;
+    font-size: 60px;
+    font-family: cursive;
+}
+
+.category-box.decide {
+    background-color: #FED9B7; /* Light Peach */
+}
+
+.category-box.decide h3 {
+    color: #0081A7;
+    font-family: cursive;
+}
+
+.category-box.decide p {
+    color: #0081A7;
+    margin: unset;
+    font-size: 60px;
+    font-family: cursive;
+}
+
+.category-box.delegate {
+    background-color: #00AFB9; /* Teal */
+}
+
+.category-box.delegate h3 {
+    color: white;
+    font-family: cursive;
+}
+
+.category-box.delegate p {
+    color: white;
+    margin: unset;
+    font-size: 60px;
+    font-family: cursive;
+}
+
+.category-box.delete {
+    background-color: #0081A7; /* Dark Blue */
+}
+
+.category-box.delete h3 {
+    color: white;
+    font-family: cursive;
+}
+
+.category-box.delete p {
+    color: white;
+    margin: unset;
+    font-size: 60px;
+    font-family: cursive;
+}
+
+.analysis-box {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.summary {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.overall-summary {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+h2 {
+    color: #F07167; /* Main Red Color */
+}
+
+h3 {
+    color: #0081A7; /* Secondary Blue Color */
+}
+
+#errorMessage {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Responsive design for small screens */
+@media screen and (max-width: 600px) {
+    .report-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .task-categories, .analysis-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.export-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
+.detailReport{
+    margin-top: 15%;
+}

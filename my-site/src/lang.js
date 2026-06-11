@@ -43,6 +43,7 @@ const t = {
       calendar:     { title: 'Calendar',    desc: 'Browse months and reminders.' },
       calculator:   { title: 'Calculator',  desc: 'A clean everyday calculator.' },
       spinner:      { title: 'Spinner',     desc: 'Add options, spin the wheel!' },
+      tba:          { title: 'TBA',         desc: 'Task board with Eisenhower matrix prioritization.' },
     },
   },
   zh: {
@@ -89,6 +90,7 @@ const t = {
       calendar:     { title: '日历',   desc: '查看日期与备忘' },
       calculator:   { title: '计算器', desc: '日常计算用' },
       spinner:      { title: '转盘抽奖', desc: '填入选项，转盘决定！' },
+      tba:          { title: 'TBA 任务板', desc: '基于艾森豪威尔矩阵的任务管理系统。' },
     },
   },
 }

@@ -329,6 +329,12 @@
         <div class="play-card-title" id="card-title-spin">Spinner</div>
         <div class="play-card-desc" id="card-desc-spin">Add options, spin the wheel — decide!</div>
       </a>
+      <a class="play-card" href="./TBA/">
+        <div class="play-card-icon">📋</div>
+        <div class="play-card-type" id="card-type-tool5">Tool</div>
+        <div class="play-card-title" id="card-title-tba">TBA</div>
+        <div class="play-card-desc" id="card-desc-tba">Task board with Eisenhower matrix prioritization.</div>
+      </a>
     </div>
   </div>
 </section>
@@ -372,6 +378,7 @@ const translations = {
     titleCal:     'Calendar',   descCal:     'Browse months and jot down reminders.',
     titleCalc:    'Calculator', descCalc:    'A clean calculator for everyday math.',
     titleSpin:    'Spinner',    descSpin:    'Add options, spin the wheel — decide!',
+    titleTba:     'TBA',        descTba:     'Task board with Eisenhower matrix prioritization.',
     footer: '© 2026 Zhiyuan Wang · Built with plain HTML, hosted on GitHub Pages',
   },
   zh: {
@@ -407,6 +414,7 @@ const translations = {
     titleCal:     '日历',   descCal:     '查看日期与备忘',
     titleCalc:    '计算器', descCalc:    '日常计算用',
     titleSpin:    '转盘抽奖', descSpin:  '填入选项，转盘决定！',
+    titleTba:     'TBA 任务板', descTba: '基于艾森豪威尔矩阵的任务管理系统。',
     footer: '© 2026 王志远 · 用纯 HTML 构建，托管于 GitHub Pages',
   }
 }
@@ -460,6 +468,7 @@ function applyLang(lang) {
   document.getElementById('card-type-tool2').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool3').textContent  = t.cardTypeTool
   document.getElementById('card-type-tool4').textContent  = t.cardTypeTool
+  document.getElementById('card-type-tool5').textContent  = t.cardTypeTool
 
   document.getElementById('card-title-2048').textContent  = t.title2048
   document.getElementById('card-desc-2048').textContent   = t.desc2048
@@ -473,6 +482,8 @@ function applyLang(lang) {
   document.getElementById('card-desc-calc').textContent   = t.descCalc
   document.getElementById('card-title-spin').textContent  = t.titleSpin
   document.getElementById('card-desc-spin').textContent   = t.descSpin
+  document.getElementById('card-title-tba').textContent   = t.titleTba
+  document.getElementById('card-desc-tba').textContent    = t.descTba
 
   document.getElementById('footer-text').textContent = t.footer
 }

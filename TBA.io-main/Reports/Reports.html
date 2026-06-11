@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Reports Page</title>
+    <link rel="stylesheet" href="./Reports.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="./Reports.js" defer></script>
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/70d96a9cb5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <button class="openbtn" aria-label="Toggle Navigation" onclick="toggleNav()">☰</button>
+            <div class="header-center">
+                <h1>Report</h1>
+            </div>
+            <div class="header-right">
+                <a href="../Calendar/calendar.html" class="header-icon" aria-label="Calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                </a>
+                <a href="../AboutUs/AboutUs.html" aria-label="About Us">
+                    <img src="../Resources/logo.png" alt="Task Manager Logo" class="logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav id="mySidebar" class="sidebar">
+        <button class="closebtn" aria-label="Close Navigation" onclick="toggleNav()">×</button>
+        <a href="../index.html">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="../AboutUs/AboutUs.html">
+            <i class="fas fa-info-circle"></i> About Us
+        </a>
+        <a href="../Reports/Reports.html">
+            <i class="fas fa-chart-bar"></i> Reports
+        </a>
+        <a href="../Settings/Settings.html">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main">
+        <div class="report-container">
+            <div class="chart-box">
+                <canvas id="taskPieChart"></canvas>
+            </div>
+            <div class="task-categories-container">
+                <div class="task-categories">
+                    <div class="category-box do">
+                        <h3>Do</h3>
+                        <p id="doTasks">0</p>
+                    </div>
+                    <div class="category-box decide">
+                        <h3>Decide</h3>
+                        <p id="decideTasks">0</p>
+                    </div>
+                    <div class="category-box delegate">
+                        <h3>Delegate</h3>
+                        <p id="delegateTasks">0</p>
+                    </div>
+                    <div class="category-box delete">
+                        <h3>Delete</h3>
+                        <p id="deleteTasks">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="analysis-box summary">
+                <h3>Task Summary</h3>
+                <p id="completedTasks">Completed Tasks: 0</p>
+                <p id="incompleteTasks">Incomplete Tasks: 0</p>
+                <p id="inProgressTasks">In Progress Tasks: 0</p>
+                <p>Average time to complete tasks: <span id="averageTime">0 min</span></p>
+                <p>Most common task category: <span id="commonCategory">N/A</span></p>
+            </div>
+            <div class="analysis-box overall-summary">
+                <h3>Comments</h3>
+                <p id="completionReport">Loading report...</p>
+                <div class = "detailReport">
+                    <button class="btn" onclick="showModal()">Show Detailed Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" tabindex="0" aria-label="Close Modal" onclick="closeModal()">&times;</span>
+            <button class="export-btn" onclick="exportToPDF()">Export as PDF</button>
+            <div id="reportContainer"></div>
+        </div>
+    </div>
+</body>
+
+</html>
