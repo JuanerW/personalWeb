@@ -10,6 +10,7 @@ export default function Home() {
     { key: 'snake',  path: '/games/snake',  emoji: '🐍' },
     { key: 'wordle',   path: '/games/wordle',   emoji: '🟩' },
     { key: 'reaction', path: '/games/reaction', emoji: '⚡' },
+    { key: 'typing',   path: '/games/typing',   emoji: '⌨️' },
   ]
   const tools = [
     { key: 'notepad',    path: '/tools/notepad',    emoji: '📝' },

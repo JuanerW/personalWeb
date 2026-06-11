@@ -1,0 +1,234 @@
+.page {
+  min-height: calc(100vh - 47px);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px 20px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.back {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--accent); }
+
+.title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--ink);
+  flex: 1;
+  letter-spacing: -0.01em;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.score {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 44px;
+  text-align: right;
+  letter-spacing: -0.02em;
+}
+
+.lives     { display: flex; gap: 3px; }
+.heartOn   { color: #e44; font-size: 17px; line-height: 1; }
+.heartOff  { color: var(--line); font-size: 17px; line-height: 1; }
+
+/* ── Arena ───────────────────────────────────────────────────────── */
+.arena {
+  flex: 1;
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 400px;
+  max-height: 520px;
+}
+
+/* dashed danger line near the bottom */
+.dangerLine {
+  position: absolute;
+  bottom: 52px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(220,80,60,0.45) 0,
+    rgba(220,80,60,0.45) 5px,
+    transparent 5px,
+    transparent 9px
+  );
+  pointer-events: none;
+}
+
+/* ── Falling words ───────────────────────────────────────────────── */
+.word {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 3px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  user-select: none;
+  pointer-events: none;
+  transition: border-color 0.12s, background 0.12s, box-shadow 0.12s;
+}
+
+.wordTarget {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  box-shadow: 0 2px 14px -5px rgba(29,107,95,0.5);
+}
+
+.typed   { color: var(--accent); }
+.untyped { color: var(--ink); }
+
+/* ── Input pill ──────────────────────────────────────────────────── */
+.inputPill {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 18px;
+  background: var(--bg);
+  border: 1.5px solid var(--accent);
+  border-radius: 100px;
+  min-width: 80px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.inputText {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+/* ── Overlay (idle / dead) ───────────────────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.overlayBox {
+  text-align: center;
+  padding: 36px 28px;
+  max-width: 320px;
+}
+
+.overlayHead {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.overlaySmall {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.overlayDesc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+
+.overlayHint {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-top: 14px;
+}
+
+.finalScore {
+  font-family: var(--display);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.scoreLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 22px;
+}
+
+.startBtn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: opacity 0.18s;
+}
+.startBtn:hover { opacity: 0.82; }
+
+/* ── Footer hint ─────────────────────────────────────────────────── */
+.footHint {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .page  { padding: 14px 14px 16px; }
+  .arena { min-height: 320px; }
+  .word  { font-size: 13px; padding: 2px 7px; }
+  .finalScore { font-size: 42px; }
+}

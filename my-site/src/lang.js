@@ -46,6 +46,13 @@ const t = {
     reactionAvg: 'Avg',
     reactionAttempts: 'Tries',
     hintReaction: 'Click or tap the box the instant it turns green',
+    // Typing game
+    typingTitle:    'Falling Words',
+    typingSubtitle: 'Words fall from the top — type them before they reach the ground. Speed and length increase as your score grows.',
+    typingStart:    'Start',
+    typingRetry:    'Try Again',
+    typingScore:    'Score',
+    typingHint:     'Type the falling words · Backspace to retry a letter · Esc to unlock target',
     // Ambient Mixer
     ambientTitle: 'Ambient Mixer',
     ambientMaster: 'Master',
@@ -80,6 +87,7 @@ const t = {
       snake:        { title: 'Snake',       desc: 'Classic snake — eat more, move faster.' },
       wordle:       { title: 'Wordle',       desc: 'Guess the daily 5-letter word in 6 tries.' },
       reaction:     { title: 'Reaction',    desc: 'Test your reflexes in milliseconds.' },
+      typing:       { title: 'Falling Words', desc: 'Type falling words before they hit the ground.' },
       ambient:      { title: 'Ambient',     desc: 'Mix background sounds for deep focus.' },
       notepad:      { title: 'Notepad',     desc: 'Quick notes, auto-saved locally.' },
       calendar:     { title: 'Calendar',    desc: 'Browse months and reminders.' },
@@ -135,6 +143,13 @@ const t = {
     reactionAvg: '平均',
     reactionAttempts: '次数',
     hintReaction: '方框变绿的瞬间点击',
+    // Typing game
+    typingTitle:    '打字防御战',
+    typingSubtitle: '单词从顶部落下——在它们到达底部之前打出来。得分越高，单词越长，下落越快。',
+    typingStart:    '开始',
+    typingRetry:    '再来一次',
+    typingScore:    '得分',
+    typingHint:     '打出下落的单词 · 退格键撤销一个字母 · Esc 解除锁定',
     // Ambient Mixer
     ambientTitle: '白噪音混音器',
     ambientMaster: '主音量',
@@ -169,6 +184,7 @@ const t = {
       snake:        { title: '贪吃蛇', desc: '经典贪吃蛇，吃得越多越难' },
       wordle:       { title: 'Wordle',    desc: '6 次机会猜出每日 5 字母单词。' },
       reaction:     { title: '反应力测试', desc: '毫秒级别的反应力挑战。' },
+      typing:       { title: '打字防御战', desc: '在单词落地前打出来，速度越来越快。' },
       ambient:      { title: '白噪音混音器', desc: '混合环境音，帮助专注。' },
       notepad:      { title: '记事本', desc: '随手记，自动保存' },
       calendar:     { title: '日历',   desc: '查看日期与备忘' },

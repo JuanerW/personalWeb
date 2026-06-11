@@ -11,6 +11,7 @@ import Spinner from './pages/tools/Spinner/Spinner'
 import Wordle from './pages/games/Wordle/Wordle'
 import ReactionTest from './pages/games/ReactionTest/ReactionTest'
 import AmbientMixer from './pages/tools/AmbientMixer/AmbientMixer'
+import TypingGame from './pages/games/TypingGame/TypingGame'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/games/wordle"    element={<Wordle />} />
           <Route path="/games/reaction"  element={<ReactionTest />} />
           <Route path="/tools/ambient"   element={<AmbientMixer />} />
+          <Route path="/games/typing"    element={<TypingGame />} />
           <Route path="/tools/notepad" element={<Notepad />} />
           <Route path="/tools/calendar" element={<Calendar />} />
           <Route path="/tools/calculator" element={<Calculator />} />
